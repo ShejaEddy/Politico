@@ -38,7 +38,9 @@ body {
 
 .container {
   display: flex;
-  flex-flow: column;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
 }
 .d-none {
   display: none;
@@ -60,6 +62,7 @@ body {
   height: 41px;
   width: 130px;
   margin-bottom: 10px;
+  cursor: pointer;
 }
 .nav-option {
   display: inline;
@@ -107,6 +110,7 @@ nav {
   position: relative;
   background-color: #e2e1e152;
   z-index: 10;
+  height: calc(100vh - 59px);
 }
 .sidebar {
   width: 239px;
@@ -283,7 +287,22 @@ nav {
     opacity: 0;
   }
 }
-
+.footer {
+  padding: 1em 0;
+  width: 100%;
+  background: #0c091b;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  color: grey;
+}
+.footer ul {
+  padding: 0;
+}
+.footer i {
+  font-size: 1.4em;
+  color: grey;
+}
 @media screen and (max-width: 800px) {
   .sidebar {
     margin-left: -239px;

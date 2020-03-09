@@ -1,39 +1,68 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/css/index.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/index.css" />
     <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
       integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
       crossorigin="anonymous"
     />
-	<title>Welcome to Politico</title>
-</head>
-<body>
-	<div class="container">
-		<nav>
-            <div class="logo"></div>
-            <div class="nav-menu">
-            	<ul>
-            		<li><a href="views/login.html"><i class="fas fa-sign-in-alt"></i>Login</a></li>
-            		<li><a href="views/signup.html"><i class="fas fa-user-plus"></i>Register</a></li>
-            	</ul>
-            </div>
-        </nav>
-        <div class="content">
-        	<div class="intro-container">
-        		<p class="intro-text">
-	        		Welcome to Politico platform,
-        		</p>
-	        	<p class="body-text">
-	        		Let us all become good patrioteers by casting our votes to the best candidate so as to improve not only our future but mostly our today first.
-	        	</p>
-        	</div>
-        	<button class="start"><a href="views/login.html">Start Voting</a> <i class="fas fa-vote-yea"></i></button>
+    <title>Welcome to Politico</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <div class="logo" onclick="document.location.href='index.html'"></div>
+        <div class="nav-menu">
+          <ul>
+            <li>
+              <a href="login.html"><i class="fas fa-sign-in-alt"></i>Login</a>
+            </li>
+            <li>
+              <a href="signup.html"><i class="fas fa-user-plus"></i>Register</a>
+            </li>
+          </ul>
         </div>
-	</div>
-</body>
+      </nav>
+      <div class="content">
+        <div class="intro-container">
+          <p class="intro-text">
+            Welcome to Politico platform,
+          </p>
+          <p class="body-text">
+            Let us all become good patrioteers by casting our votes to the best
+            candidate so as to improve not only our future but mostly our today
+            first.
+          </p>
+        </div>
+        <button class="start">
+          <a href="login.html">Start Voting</a>
+          <i class="fas fa-arrow-right"></i>
+        </button>
+      </div>
+      <div class="footer">
+        <ul>
+          <li>CONTACT US</li>
+		  <li>+250784141587</li>
+        </ul>
+
+        <ul class="social-icons">
+          <li>
+            <a class="facebook" href="https://www.facebook.com/sheja.eddy"><i class="fab fa-facebook"></i></a>
+          </li>
+          <li>
+            <a class="twitter" href="https://twitter.com/EddySheja"><i class="fab fa-twitter"></i></a>
+          </li>
+          <li>
+            <a class="linkedin" href="https://www.linkedin.com/in/sheja-eddy-5367b6192/"><i class="fab fa-linkedin"></i></a>
+          </li>
+        </ul>
+        <div class="copy">Copyright &copy; 2020 All Rights Reserved by Politico</div>
+      </div>
+    </div>
+  </body>
 </html>

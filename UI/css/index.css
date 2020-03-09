@@ -8,28 +8,6 @@ body {
   background-size: cover;
 }
 
-.container {
-  width: 100%;
-  height: 100%;
-  padding-bottom: 5%;
-}
-.container nav {
-  height: 59px;
-  display: flex;
-  background-color: white;
-  align-items: center;
-  justify-content: space-between;
-  padding-left: 2%;
-  border-bottom: 2px solid #00afec;
-  box-sizing: border-box;
-}
-.container .logo {
-  background-image: url(../img/logo2.png);
-  background-size: cover;
-  height: 41px;
-  width: 130px;
-  margin-bottom: 10px;
-}
 li {
   display: inline;
   margin-right: 10px;
@@ -50,10 +28,11 @@ a {
 }
 
 .content {
-  padding-top: 8%;
+  padding-top: 2%;
   width: 100%;
   display: flex;
   flex-direction: column;
+  background: none;
 }
 
 .intro-text,
@@ -70,12 +49,15 @@ a {
 .start {
   width: 150px;
   height: 40px;
-  font-size: 17px;
-  color: black;
+  font-size: 1.2em;
+  color: white;
   background: #00afec;
-  margin: auto;
+  margin: 1rem auto auto;
   border: 0;
   border-radius: 4px;
+}
+.start a {
+  color: white;
 }
 .start:hover {
   background-color: #7446ff;
@@ -85,4 +67,17 @@ a {
 .intro-container {
   width: 60%;
   margin: auto;
+}
+.start i {
+  position: relative;
+  -webkit-animation: slide 1 infinite;
+  animation: slide 1s infinite;
+}
+@keyframes slide {
+  from {
+    left: 0;
+  }
+  to {
+    left: 5px;
+  }
 }
