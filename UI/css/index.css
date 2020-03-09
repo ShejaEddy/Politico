@@ -40,11 +40,11 @@ a {
 .footer-text {
   color: white;
   text-align: center;
-  font-size: 21px;
+  font-size: 20px;
 }
 
 .intro-text {
-  font-size: 40px;
+  font-size: 2em;
 }
 .start {
   width: 150px;
