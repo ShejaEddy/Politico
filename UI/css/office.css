@@ -1,0 +1,72 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+#body {
+  background-color: #f7f6f6 !important;
+}
+.office-container {
+  width: 100%;
+}
+.office-details {
+  display: flex;
+  padding: 1rem;
+  margin: 0 1em;
+  box-shadow: 0px 2px 5px lightgrey;
+  background: white;
+}
+.candidate-profile {
+  background-color: white;
+  height: 100% !important;
+  box-shadow: 0px 2px 5px lightgrey;
+  margin-right: 1em;
+  width: 30% !important;
+  position: relative;
+}
+.candidate-profile .content {
+  background-color: white;
+}
+.candidate-profile .close-profile {
+  position: absolute;
+  top: 1em;
+  left: 1em;
+  z-index: 12;
+}
+.candidates-body {
+  background: white;
+  margin: 1em;
+  padding: 1em;
+  box-shadow: 0px 2px 5px lightgrey;
+}
+.candidates-body h4 {
+  margin: 0 2em;
+  font-size: 1.2em;
+}
+.all-candidates .list {
+  width: 90% !important;
+}
+.office-profile {
+  height: 80px;
+  width: 80px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: inline-block;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+.office-details .office-data p {
+  margin: 0;
+  font-size: 14px;
+}
+#update-modal {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: fit-content;
+  height: fit-content;
+  margin: auto;
+  z-index: 100;
+}
