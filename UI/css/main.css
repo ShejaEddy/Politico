@@ -110,7 +110,7 @@ nav {
   position: relative;
   background-color: #e2e1e152;
   z-index: 10;
-  height: calc(100vh - 59px);
+  min-height: calc(100vh - 59px);
 }
 .sidebar {
   width: 239px;
