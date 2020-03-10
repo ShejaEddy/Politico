@@ -1,0 +1,270 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+* {
+  font-family: "Roboto", sans-serif;
+}
+
+.candidates-container {
+  width: 100%;
+  height: 100%;
+  background: white;
+  padding: 3% 0;
+}
+
+h3 {
+  font-size: 25px;
+  text-align: center;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+.container {
+  display: flex;
+}
+.search-container {
+  margin: auto;
+  width: 50%;
+}
+
+.search-container input {
+  width: 100%;
+  height: 40px;
+  border-radius: 4px;
+  border: 1px solid lightgray;
+  font-size: 0.9em;
+  padding-left: 30px;
+}
+.all-candidates {
+  padding-top: 2%;
+}
+.all-candidates .list {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  width: 50%;
+  margin: auto;
+  border-top: 1px solid lightgrey;
+  padding: 10px;
+  cursor: pointer;
+  justify-content: space-between;
+}
+.all-candidates p {
+  margin: 0;
+}
+.d-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.all-candidates .list:hover {
+  background-color: rgba(0, 0, 0, 0.08);
+}
+.profile {
+  height: 50px;
+  width: 50px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: inline-block;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+.bio {
+  color: gray;
+  font-size: 14px;
+}
+.options {
+  display: flex;
+  justify-content: flex-end;
+  margin-left: 1em;
+}
+.vote-btn {
+  width: 100px;
+  height: 30px;
+  cursor: pointer;
+  background-color: #00afec;
+  border: 0;
+  color: white;
+  font-size: 1em;
+  border-radius: 2px;
+}
+.close-tab {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  cursor: pointer;
+  font-size: 1.5em;
+  box-shadow: 0px 3px 5px #9c9494;
+  border-radius: 50%;
+  padding: 1rem;
+  width: 20px;
+  height: 20px;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+.candidate-profile {
+  width: 35vw;
+  height: 100vh;
+  border-left: 1px solid lightgrey;
+  display: none;
+  position: sticky;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+.candidate-profile .content {
+  padding-top: 60px;
+}
+.unique {
+  margin: auto !important;
+  width: 100px !important;
+  height: 100px !important;
+}
+.candidate-profile tr {
+  margin-bottom: 10px;
+}
+.candidate-profile tr td:nth-child(1) {
+  font-weight: bold;
+  text-align: left;
+}
+.candidate-profile tr td:nth-child(2) {
+  text-align: right;
+}
+.candidate-profile .content {
+  display: flex;
+  flex-direction: column;
+}
+.candidate-profile table {
+  padding: 30px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-profile {
+  cursor: pointer;
+  position: relative;
+  left: 20px;
+  top: 13px;
+  font-size: 21px;
+  z-index: 100;
+}
+
+#vote-modal {
+  position: absolute;
+  display: flex;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.2784313725490196);
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+#vote-modal h4 {
+  display: flex;
+  justify-content: space-between;
+}
+.d-none {
+  display: none !important;
+}
+#vote-modal.d-none {
+  opacity: 0;
+  z-index: 0;
+  transition: all 0.5s;
+}
+#vote-modal form {
+  background: white;
+  padding: 0 2rem;
+  border-radius: 3px;
+  margin-bottom: 10rem;
+}
+#vote-modal .input-group {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+#vote-modal .input-group .no {
+  background: tomato;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 2px;
+  color: white;
+  cursor: pointer;
+}
+#vote-modal .input-group .yes {
+  padding: 0.5rem 1rem;
+  border: none;
+  background: #00afec;
+  color: white;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+#toaster {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 10;
+  left: 50%;
+  bottom: 30px;
+}
+h3 {
+  font-size: 20px;
+  margin: 5px 20px;
+}
+h3 span {
+  font-size: 1em;
+}
+.list .details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.name {
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #064f69;
+}
+.main-title {
+  padding: 0 2em 0.3em;
+  color: #808c90;
+  text-align: left;
+}
+#toaster.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@media screen and (max-width: 420px) {
+  .search-container,
+  .list {
+    width: 100% !important;
+  }
+  .vote-btn {
+    font-size: 12px;
+    width: 50px;
+    height: 20px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .search-container,
+  .list {
+    width: 80% !important;
+  }
+}
