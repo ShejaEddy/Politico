@@ -163,7 +163,8 @@ body {
 }
 
 #update-modal {
-  position: absolute;
+  position: fixed;
+  overflow: auto;
   display: flex;
   top: 0;
   bottom: 0;
@@ -245,7 +246,8 @@ body {
 }
 
 #delete-modal {
-  position: absolute;
+  position: fixed;
+  overflow: auto;
   display: flex;
   top: 0;
   bottom: 0;
