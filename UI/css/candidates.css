@@ -120,7 +120,7 @@ body {
   padding-top: 60px;
 }
 .unique {
-  margin: auto !important;
+  margin: 0 auto !important;
   width: 100px !important;
   height: 100px !important;
 }
