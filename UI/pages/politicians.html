@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/candidates.css" />
+    <link rel="stylesheet" href="../css/offices.css" />
+    <link rel="stylesheet" href="../css/politicians.css" />
+    <link rel="stylesheet" href="../css/main.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+      integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+      crossorigin="anonymous"
+    />
+    <title>Politico | Politicians</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <nav>
+        <div class="logo"></div>
+        <div class="nav-menu">
+          <ul>
+            <li class="nav-option">
+              <a href="login.html" class="nav-link"
+                ><i class="fas fa-sign-out-alt"></i>Logout</a
+              >
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="content">
+        <div class="sidebar">
+          <header>
+            <div class="user-profile">
+              <div class="profile" onclick="ChangeView('admin-profile')"></div>
+              <div class="details" onclick="ChangeView('admin-profile')">
+                Sheja Eddy
+              </div>
+            </div>
+          </header>
+          <ul>
+            <li onclick="ChangeView('parties')" id="parties">
+              <i class="far fa-flag main-opt"></i
+              ><span class="opt">parties</span>
+              <i class="fas fa-plus flt-right"></i>
+            </li>
+            <li onclick="ChangeView('offices')" id="offices">
+              <i class="fas fa-users-cog main-opt"></i>
+              <span class="opt">Offices</span>
+              <i class="fas fa-plus flt-right"></i>
+            </li>
+            <li onclick="ChangeView('politicians')" id="politicians">
+              <i class="fas fa-user-tie main-opt"></i>
+              <span class="opt">Politicians</span>
+              <i class="fas fa-plus flt-right"></i>
+            </li>
+            <li onclick="ChangeView('results')" id="results">
+              <i class="fas fa-award main-opt"></i>
+              <span class="opt">Results</span>
+            </li>
+          </ul>
+        </div>
+        <div id="body">
+          <div class="politicians-container">
+             <header>
+            <h3 class="main-title">
+              <i class="fas fa-caret-right"></i>Politicians
+            </h3>
+          </header>
+          <div class="container">
+            <h3 class="title">
+              <span>All politicians</span>
+              <button class="create-office" onclick="openModal('create-modal')">
+                Create politician <i class="fas fa-plus"></i>
+              </button>
+            </h3>
+            <div class="search-container">
+              <input type="search" placeholder="Search a politician" />
+            </div>
+            <div id="politicians-list"></div>
+          </div>
+          </div>
+         
+          <div class="candidate-profile">
+            <i class="fas fa-times close-profile"></i>
+            <div class="content">
+              <div
+                class="profile unique"
+                style="background-image: url('../img/avatar.png');"
+              ></div>
+              <div class="details">
+                <table>
+                  <tr>
+                    <td>First Name :</td>
+                    <td>Sheja</td>
+                  </tr>
+                  <tr>
+                    <td>Last Name :</td>
+                    <td>Eddy</td>
+                  </tr>
+                  <tr>
+                    <td>Other Name :</td>
+                    <td>Boy</td>
+                  </tr>
+                  <tr>
+                    <td>Phone Number :</td>
+                    <td>078145263</td>
+                  </tr>
+                  <tr>
+                    <td>Birthday :</td>
+                    <td>12/02/1990</td>
+                  </tr>
+                  <tr>
+                    <td>Political party :</td>
+                    <td>FPR</td>
+                  </tr>
+                   <tr>
+                    <td>Office :</td>
+                    <td>President</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="toaster"></div>
+      </div>
+      <div class="footer">
+        <ul>
+          <li>CONTACT US</li>
+		  <li>+250784141587</li>
+        </ul>
+
+        <ul class="social-icons">
+          <li>
+            <a class="facebook" href="https://www.facebook.com/sheja.eddy"><i class="fab fa-facebook"></i></a>
+          </li>
+          <li>
+            <a class="twitter" href="https://twitter.com/EddySheja"><i class="fab fa-twitter"></i></a>
+          </li>
+          <li>
+            <a class="linkedin" href="https://www.linkedin.com/in/sheja-eddy-5367b6192/"><i class="fab fa-linkedin"></i></a>
+          </li>
+        </ul>
+        <div class="copy">Copyright &copy; 2020 All Rights Reserved by Politico</div>
+      </div>
+    </div>
+    <div id="update-modal" class="d-none">
+      <form>
+        <div class="title">
+          <h4>
+            UPDATE POLITICIAN
+            <i class="fa fa-times" onclick="closeModal('update-modal')"></i>
+          </h4>
+        </div>
+        <div class="profile update-profile">
+          <i class="fas fa-pen update-upload"></i>
+        </div>
+        <div class="input-group">
+          <label>Names:</label>
+          <input type="text" name="name" class="update-name" />
+        </div>
+        <div class="input-group">
+          <label>PhoneNumber:</label>
+          <input type="text" name="name" class="update-phoneNumber" />
+        </div>
+        <div class="input-group">
+          <label>NationalId/Passport:</label>
+          <input type="text" name="name" class="update-nId" />
+        </div>
+        <div class="input-group">
+          <label>Party:</label>
+          <select class="update-party">
+            <option value="FPR INKOTANYI">FPR INKOTANYI</option>
+            <option value="GREEN PARTY">GREEN PARTY</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label>Party:</label>
+          <select class="update-office">
+            <option value="President of the nation"
+              >President of the nation</option
+            >
+            <option value="Minister of health">Minister of health</option>
+            <option value="Federal Judge">Federal Judge</option>
+            <option value="Minister of defense">Minister of defense</option>
+            <option value="Refer of wealth">Refer of wealth</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <button class="create" onclick="closeModal('update-modal')">
+            Update Party
+          </button>
+        </div>
+      </form>
+    </div>
+    <div id="delete-modal" class="d-none">
+      <form>
+        <div class="title">
+          <h4>
+            CONFIRMATION
+            <i class="fa fa-times" onclick="closeModal('delete-modal')"></i>
+          </h4>
+          <hr />
+        </div>
+
+        <div class="message">
+          <p>Do you really want to delete this politician?</p>
+        </div>
+        <div class="input-group">
+          <button class="no" onclick="closeModal('delete-modal')">No</button>
+          <button class="yes delete-approved">Yes</button>
+        </div>
+      </form>
+    </div>
+    <div class="new-politician d-none" id="create-modal">
+      <form id="politician-form" action="" method="post">
+        <h4>Fill New Politician Form</h4>
+        <i
+          class="fas fa-times flt-right"
+          onclick="closeModal('create-modal')"
+        ></i>
+        <fieldset>
+          <input
+            placeholder="First name"
+            type="text"
+            tabindex="1"
+            required
+            autofocus
+          />
+        </fieldset>
+        <fieldset>
+          <input placeholder="Last name" type="text" tabindex="2" required />
+        </fieldset>
+        <fieldset>
+          <input placeholder="Other name" type="text" tabindex="3" required />
+        </fieldset>
+        <fieldset>
+          <input placeholder="Phone Number" type="tel" tabindex="4" required />
+        </fieldset>
+        <fieldset>
+          <input
+            placeholder="National Id/ Passport"
+            type="tel"
+            tabindex="4"
+            required
+          />
+        </fieldset>
+        <fieldset>
+          <select tabindex="5" required>
+            <option disabled selected value>choose office</option>
+            <option value="President of the nation"
+              >President of the nation</option
+            >
+            <option value="Vice president">Vice president</option>
+            <option value="Minister of defense">Minister of defense</option>
+            <option value="Referer"></option>
+          </select>
+        </fieldset>
+        <fieldset>
+          <select tabindex="5" required>
+            <option disabled selected value>choose party</option>
+            <option value="Fpr Inkotanyi">Fpr Inkotanyi</option>
+            <option value="Green party">Green party</option>
+            <option value="FARG">FARG</option>
+          </select>
+        </fieldset>
+        <fieldset>
+          <input placeholder="Password" type="tel" tabindex="4" required />
+        </fieldset>
+        <fieldset>
+          <button name="submit" type="submit" id="contact-submit">
+            Create Politician
+          </button>
+        </fieldset>
+      </form>
+    </div>
+  </body>
+  <script src="../js/index.js" type="text/javascript"></script>
+  <script src="../js/politicians.js" type="text/javascript"></script>
+</html>
