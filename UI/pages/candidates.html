@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/candidates.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+      integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+      crossorigin="anonymous"
+    />
+    <title>Candidates</title>
+  </head>
+  <body>
+    <div class="container">
+      <i class="fas fa-times close-tab"></i>
+      <div class="candidates-container">
+        <h3>Choose only one candidate</h3>
+        <div class="search-container">
+          <input type="search" placeholder="Search a candidate here" />
+        </div>
+        <div class="all-candidates"></div>
+      </div>
+      <div class="candidate-profile">
+        <i class="fas fa-times close-profile"></i>
+        <div class="content">
+          <div
+            class="profile unique"
+            style="background-image: url('../img/avatar.png');"
+          ></div>
+          <div class="details">
+            <table>
+              <tr>
+                <td>First Name :</td>
+                <td>Sheja</td>
+              </tr>
+              <tr>
+                <td>Last Name :</td>
+                <td>Eddy</td>
+              </tr>
+              <tr>
+                <td>Other Name :</td>
+                <td>Boy</td>
+              </tr>
+              <tr>
+                <td>Birthday :</td>
+                <td>12/02/1990</td>
+              </tr>
+              <tr>
+                <td>Political party :</td>
+                <td>FPR</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div id="toaster"></div>
+    </div>
+    <div id="vote-modal" class="d-none">
+      <form>
+        <div class="title">
+          <h4>
+            CONFIRMATION
+            <i class="fa fa-times" onclick="closeModal('vote-modal')"></i>
+          </h4>
+          <hr />
+        </div>
+        <div class="message">
+          <p>Do you really want to vote for this candidate?</p>
+        </div>
+        <div class="input-group">
+          <button class="no" onclick="closeModal('vote-modal')">No</button>
+          <button class="yes vote-approved">Yes</button>
+        </div>
+      </form>
+    </div>
+  </body>
+  <script src="../js/index.js" type="text/javascript"></script>
+  <script src="../js/candidates.js" type="text/javascript"></script>
+</html>
