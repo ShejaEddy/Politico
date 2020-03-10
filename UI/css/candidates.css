@@ -126,7 +126,12 @@ body {
 .candidate-profile .content {
   padding-top: 60px;
 }
-.unique {
+<<<<<<< head ======= .footer li {
+  display: inline;
+  margin-right: 10px;
+}
+>>>>>>>feature(user-view-results): create a vote results page [#171721367]
+  .unique {
   margin: 0 auto !important;
   width: 100px !important;
   height: 100px !important;
