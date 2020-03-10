@@ -253,7 +253,8 @@ body {
 }
 
 #delete-modal {
-  position: absolute;
+  position: fixed;
+  overflow: auto;
   display: flex;
   top: 0;
   bottom: 0;
