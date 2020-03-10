@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/parties.css" />
+    <link rel="stylesheet" href="../css/offices.css" />
+    <link rel="stylesheet" href="../css/main.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+      integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+      crossorigin="anonymous"
+    />
+    <title>Politico | Parties</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <nav>
+        <div class="logo"></div>
+        <div class="nav-menu">
+          <ul>
+            <li class="nav-option">
+              <a href="login.html" class="nav-link"
+                ><i class="fas fa-sign-out-alt"></i>Logout</a
+              >
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="content">
+        <div class="sidebar">
+          <header>
+            <div class="user-profile">
+              <div class="profile" onclick="ChangeView('admin-profile')"></div>
+              <div class="details" onclick="ChangeView('admin-profile')">
+                Sheja Eddy
+              </div>
+            </div>
+          </header>
+          <ul>
+            <li onclick="ChangeView('parties')" id="parties">
+              <i class="far fa-flag main-opt"></i
+              ><span class="opt">parties</span>
+              <i class="fas fa-plus flt-right"></i>
+            </li>
+            <li onclick="ChangeView('offices')" id="offices">
+              <i class="fas fa-users-cog main-opt"></i>
+              <span class="opt">Offices</span>
+              <i class="fas fa-plus flt-right"></i>
+            </li>
+            <li onclick="ChangeView('politicians')" id="politicians">
+              <i class="fas fa-user-tie main-opt"></i>
+              <span class="opt">Politicians</span>
+              <i class="fas fa-plus flt-right"></i>
+            </li>
+            <li onclick="ChangeView('results')" id="results">
+              <i class="fas fa-award main-opt"></i>
+              <span class="opt">Results</span>
+            </li>
+          </ul>
+        </div>
+        <div id="body">
+          <header>
+            <h3 class="main-title">
+              <i class="fas fa-caret-right"></i>Parties
+            </h3>
+            <div class="new-office">
+              <h3>Create new party</h3>
+              <form class="create-new-office">
+                <label for="name">Name</label
+                ><input type="text" id="name" placeholder="Name..." />
+                <label for="name">HeadQuarter</label
+                ><input type="text" placeholder="headQuarter..." />
+                <input type="file" class="d-none" id="logo-input" />
+                <button id="upload">upload logo?</button>
+                <button type="submit" class="create-office">
+                  Create party <i class="fas fa-plus"></i>
+                </button>
+              </form>
+            </div>
+          </header>
+          <div class="container">
+            <h3>All parties</h3>
+            <div class="search-container">
+              <input type="search" placeholder="Search a party" />
+            </div>
+            <div id="parties-list"></div>
+          </div>
+        </div>
+      </div>
+      <div class="footer">
+        <ul>
+          <li>CONTACT US</li>
+		  <li>+250784141587</li>
+        </ul>
+
+        <ul class="social-icons">
+          <li>
+            <a class="facebook" href="https://www.facebook.com/sheja.eddy"><i class="fab fa-facebook"></i></a>
+          </li>
+          <li>
+            <a class="twitter" href="https://twitter.com/EddySheja"><i class="fab fa-twitter"></i></a>
+          </li>
+          <li>
+            <a class="linkedin" href="https://www.linkedin.com/in/sheja-eddy-5367b6192/"><i class="fab fa-linkedin"></i></a>
+          </li>
+        </ul>
+        <div class="copy">Copyright &copy; 2020 All Rights Reserved by Politico</div>
+      </div>
+      <div id="toaster"></div>
+    </div>
+    <div id="update-modal" class="d-none">
+      <form>
+        <div class="title">
+          <h4>
+            UPDATE PARTY
+            <i class="fa fa-times" onclick="closeModal('update-modal')"></i>
+          </h4>
+        </div>
+        <div class="profile update-profile">
+          <i class="fas fa-pen update-upload"></i>
+        </div>
+        <div class="input-group">
+          <label>Name:</label>
+          <input type="text" name="name" class="update-name" />
+        </div>
+        <div class="input-group">
+          <label>HeadQuarter:</label>
+          <input type="text" name="hq" class="update-hq" />
+        </div>
+        <div class="input-group">
+          <button class="create" onclick="closeModal('update-modal')">
+            Update Party
+          </button>
+        </div>
+      </form>
+    </div>
+    <div id="delete-modal" class="d-none">
+      <form>
+        <div class="title">
+          <h4>
+            CONFIRMATION
+            <i class="fa fa-times" onclick="closeModal('delete-modal')"></i>
+          </h4>
+          <hr />
+        </div>
+
+        <div class="message">
+          <p>Do you really want to delete this party?</p>
+        </div>
+        <div class="input-group">
+          <button class="no" onclick="closeModal('delete-modal')">No</button>
+          <button class="yes delete-approved">Yes</button>
+        </div>
+      </form>
+    </div>
+  </body>
+  <script src="../js/index.js" type="text/javascript"></script>
+  <script src="../js/parties.js" type="text/javascript"></script>
+</html>
