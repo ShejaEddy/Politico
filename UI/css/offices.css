@@ -4,10 +4,26 @@
   background: white;
   padding: 3% 0;
 }
+<<<<<<< HEAD
+<<<<<<< HEAD
 .footer li {
   display: inline;
   margin-right: 10px;
 }
+=======
+=======
+>>>>>>> 6affff6396ba3e75a16d22be46591122bf09b4cc
+.fototer li {
+  display: inline;
+  margin-right: 10px;
+}
+.fototer li:hover {
+  opacity: 0.7;
+}
+<<<<<<< HEAD
+>>>>>>> feature(ft-admin-profile-171663395): admin view profile  [#171663395]
+=======
+>>>>>>> 6affff6396ba3e75a16d22be46591122bf09b4cc
 h3 {
   font-size: 20px;
   margin: 5px 20px;
