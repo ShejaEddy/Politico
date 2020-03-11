@@ -50,7 +50,7 @@ const forgotPwd = () => {
       window.location.href = "login.html";
     }, 3000);
   } else {
-    toaster.innerText = "User doesn't exist, Please Try again";
+    toaster.innerText = "User doesn't exist, Please Try again!";
     toaster.style.backgroundColor = "red";
     setTimeout(function() {
       toaster.className = toaster.className.replace("show", "");
