@@ -4,16 +4,13 @@
   background: white;
   padding: 3% 0;
 }
-
 .footer li {
   display: inline;
   margin-right: 10px;
 }
-
 .footer li:hover {
   opacity: 0.7;
 }
-
 h3 {
   font-size: 20px;
   margin: 5px 20px;
@@ -166,7 +163,8 @@ body {
 }
 
 #update-modal {
-  position: absolute;
+  position: fixed;
+  overflow: auto;
   display: flex;
   top: 0;
   bottom: 0;
@@ -248,7 +246,8 @@ body {
 }
 
 #delete-modal {
-  position: absolute;
+  position: fixed;
+  overflow: auto;
   display: flex;
   top: 0;
   bottom: 0;
