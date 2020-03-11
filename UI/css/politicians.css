@@ -1,0 +1,181 @@
+.new-politician * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -o-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h3.title {
+  text-align: left;
+}
+.new-politician {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+  background-color: rgba(0, 0, 0, 0.2784313725490196);
+  height: 100%;
+  padding: 2em 0 0;
+  color: #777;
+  font-size: 12px;
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+
+.new-politician #politician-form input[type="text"],
+.new-politician #politician-form input[type="tel"],
+.new-politician #politician-form select,
+.new-politician #politician-form button[type="submit"] {
+  font: 400 12px/16px "Roboto", Helvetica, Arial, sans-serif;
+}
+
+.new-politician #politician-form {
+  background: #fff;
+  padding: 25px;
+  margin: 150px 0;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  max-width: 400px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.new-politician #politician-form h3 {
+  display: block;
+  font-size: 30px;
+  font-weight: 300;
+  margin-bottom: 10px;
+}
+
+.new-politician #politician-form h4 {
+  margin: 5px 0 15px;
+  display: block;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.new-politician fieldset {
+  border: medium none !important;
+  margin: 0 0 10px;
+  min-width: 100%;
+  padding: 0;
+  width: 100%;
+}
+
+.new-politician #politician-form input[type="text"],
+.new-politician #politician-form input[type="tel"],
+.new-politician #politician-form select {
+  width: 100%;
+  border: 1px solid #ccc;
+  background: #fff;
+  margin: 0 0 5px;
+  padding: 10px;
+}
+.new-politician .flt-right {
+  right: 20px;
+  width: 20px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+.new-politician #politician-form input[type="text"]:hover,
+.new-politician #politician-form input[type="tel"]:hover,
+.new-politician #politician-form input[type="url"]:hover {
+  -webkit-transition: border-color 0.3s ease-in-out;
+  -moz-transition: border-color 0.3s ease-in-out;
+  transition: border-color 0.3s ease-in-out;
+  border: 1px solid #aaa;
+}
+
+.new-politician #politician-form select:invalid {
+  color: #888;
+}
+.new-politician #politician-form select option {
+  color: #000;
+}
+.new-politician #politician-form button[type="submit"] {
+  cursor: pointer;
+  width: 100%;
+  border: none;
+  background: #00afec;
+  color: #fff;
+  margin: 0 0 5px;
+  padding: 10px;
+  font-size: 15px;
+}
+
+.new-politician #politician-form button[type="submit"]:active {
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.new-politician .copyright {
+  text-align: center;
+}
+
+.new-politician #politician-form input:focus,
+.new-politician #politician-form select:focus {
+  outline: 0;
+  border: 1px solid #aaa;
+}
+
+::-webkit-input-placeholder {
+  color: #888;
+}
+
+:-moz-placeholder {
+  color: #888;
+}
+
+::-moz-placeholder {
+  color: #888;
+}
+
+:-ms-input-placeholder {
+  color: #888;
+}
+.politicians-container {
+  flex-grow: 1;
+}
+.candidate-profile {
+  background-color: white;
+  height: 100% !important;
+  box-shadow: 0px 2px 5px lightgrey;
+  margin-right: 1em;
+  width: 20vw !important;
+  position: relative;
+}
+.candidate-profile .content {
+  background-color: white;
+}
+.candidate-profile .close-profile {
+  position: absolute;
+  top: 1em;
+  left: 1em;
+  z-index: 12;
+}
+.candidates-body {
+  background: white;
+  margin: 1em;
+  padding: 1em;
+  box-shadow: 0px 2px 5px lightgrey;
+}
+.candidates-body h4 {
+  margin: 0 2em;
+  font-size: 1.2em;
+}
+.all-candidates .list {
+  width: 90% !important;
+}
+
+.search-container input {
+  width: 40%;
+}
