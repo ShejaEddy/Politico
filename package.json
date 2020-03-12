@@ -1,0 +1,70 @@
+{
+  "name": "politico",
+  "version": "1.0.0",
+  "description": "Politico Web Application enables citizens to give their mandate to politicians running for different government offices while building trust in the process through transparency ",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run db:test:reset && jest --collect-coverage --detectOpenHandles",
+    "dev": "cross-env NODE_ENV=development nodemon --exec babel-node server/index.js",
+    "clean": "rimraf dist && mkdir dist",
+    "build-server": "babel -d ./dist ./server",
+    "build": "npm run clean && npm run build-server",
+    "start": "cross-env NODE_ENV=production node ./dist/app.js",
+    "db:migrate:up": "node ./server/database/migrations/up.js",
+    "db:migrate:down": "node ./server/database/migrations/down.js",
+    "db:reset": "npm run db:migrate:down && npm run db:migrate:up && npm run db:seed",
+    "db:dev:reset": "cross-env NODE_ENV=development npm run db:reset --env development",
+    "db:prod:reset": "cross-env NODE_ENV=production npm run db:reset --env production",
+    "db:test:reset": "cross-env NODE_ENV=test npm run db:reset --env test",
+    "db:seed": "node ./server/database/seeders/index.js",
+    "coveralls": "node ./node_modules/coveralls/bin/coveralls.js < ./coverage/lcov.info"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShejaEddy/Politico.git"
+  },
+  "keywords": [
+    "politico",
+    "nodejs",
+    "express",
+    "postgrsql"
+  ],
+  "author": "sheja eddy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ShejaEddy/Politico/issues"
+  },
+  "homepage": "https://github.com/ShejaEddy/Politico#readme",
+  "dependencies": {
+    "@babel/register": "^7.8.6",
+    "@hapi/joi": "^17.1.0",
+    "bcrypt": "^4.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.15",
+    "moment": "^2.24.0",
+    "pg": "^7.18.2",
+    "swagger-ui-express": "^4.1.3"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.7",
+    "@babel/node": "^7.8.7",
+    "@babel/plugin-transform-runtime": "^7.8.3",
+    "@babel/polyfill": "^7.8.7",
+    "@babel/preset-env": "^7.8.7",
+    "babel-jest": "^25.1.0",
+    "coveralls": "^3.0.9",
+    "cross-env": "^7.0.2",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-import": "^2.20.1",
+    "husky": "^4.2.3",
+    "jest": "^25.1.0",
+    "lint-staged": "^10.0.8",
+    "nodemon": "^2.0.2",
+    "supertest": "^4.0.2"
+  }
+}
