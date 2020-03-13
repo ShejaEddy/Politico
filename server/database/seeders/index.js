@@ -1,22 +1,7 @@
-var path = require("path"),
-  fs = require("fs"),
+var filesReader = require("../../helpers/readFiles"),
   db = require("../index");
 
-const seeds = {};
-const basename = path.basename(__filename);
-String.prototype.capitalize = function() {
-  return this && this[0].toUpperCase() + this.slice(1);
-};
-fs.readdirSync(__dirname)
-  .filter(file => {
-    return (
-      file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".js"
-    );
-  })
-  .forEach(file => {
-    const seed = require(path.join(__dirname, file));
-    seeds[file.replace(".js", "").capitalize()] = seed;
-  });
+const seeds = filesReader(__dirname, __filename);
 
 (async () => {
   const promises = Object.keys(seeds).map(async seedName => {

@@ -2,24 +2,32 @@ import jwt from "jsonwebtoken";
 import { isEmpty } from "lodash";
 import db from "../database";
 import { Users } from "../database/models";
+import dotenv from "dotenv";
 import { notAuthorized, badRequest, notFound } from "../helpers/response";
 
+dotenv.config();
 const { JWT_SECRET_KEY } = process.env;
+
 export default async (req, res, next) => {
   const authHeader = req.headers.authorization;
   try {
     if (authHeader) {
       const token = authHeader.split(" ")[1];
-      jwt.verify(token, JWT_SECRET_KEY, (err, payload) => {
-        const { id } = payload;
+      jwt.verify(token, JWT_SECRET_KEY, async (err, payload) => {
+        const {
+          id,
+          role: { type }
+        } = payload;
         if (err) return notAuthorized(res);
         const user = await db.query(Users.findById, id);
-        if(isEmpty(user)) return notFound(res, 'User account not found');
+        if (isEmpty(user)) return notFound(res, "User account not found");
+        req.user = user;
+        req.user.role = { type };
         return next();
       });
     }
     return notAuthorized(res);
   } catch (error) {
-      badRequest(res);
+    badRequest(res, error);
   }
 };
