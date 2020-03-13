@@ -1,311 +1,353 @@
 .candidates-container {
-  width: 100%;
-  height: 100%;
-  background: white;
-  padding: 3% 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    padding: 3% 0;
 }
+
 .footer li {
-  display: inline;
-  margin-right: 10px;
+    display: inline;
+    margin-right: 10px;
 }
 
 .footer li:hover {
-  opacity: 0.7;
+    opacity: 0.7;
 }
 
 h3 {
-  font-size: 20px;
-  margin: 5px 20px;
+    font-size: 20px;
+    margin: 5px 20px;
 }
+
 h3 span {
-  font-size: 1em;
+    font-size: 1em;
 }
+
 i {
-  cursor: pointer;
+    cursor: pointer;
 }
+
 html,
 body {
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
+
 #body {
-  background-color: #f7f6f6 !important;
+    background-color: #f7f6f6 !important;
 }
+
 #body .container {
-  background: white;
-  margin: 1em 2rem;
-  box-shadow: 0px 3px 5px lightgrey;
-  padding: 1.2em 2.2em;
+    background: white;
+    margin: 1em 2rem;
+    box-shadow: 0px 3px 5px lightgrey;
+    padding: 1.2em 2.2em;
 }
 
 .main-title {
-  padding: 0 2em 0.3em;
-  color: #808c90;
-  text-align: left;
+    padding: 0 2em 0.3em;
+    color: #808c90;
+    text-align: left;
 }
+
 .new-office {
-  padding: 1em;
-  background: white;
-  margin: 0 2rem;
-  box-shadow: 0px 2px 5px lightgrey;
+    padding: 1em;
+    background: white;
+    margin: 0 2rem;
+    box-shadow: 0px 2px 5px lightgrey;
 }
+
 .new-office form {
-  padding: 2%;
-  display: flex;
-  align-items: center;
+    padding: 2%;
+    display: flex;
+    align-items: center;
 }
+
 .new-office form input {
-  font-size: 12px;
-  height: 25px;
-  padding-left: 10px;
-  border: 1px solid lightgrey;
-  width: 20%;
-  margin-right: 10px;
+    font-size: 12px;
+    height: 25px;
+    padding-left: 10px;
+    border: 1px solid lightgrey;
+    width: 20%;
+    margin-right: 10px;
 }
+
 .new-office form select {
-  height: 30px;
-  padding: 0 10px;
-  border: 1px solid lightgrey;
-  width: 20%;
-  font-size: 12px;
-  margin-right: 10px;
+    height: 30px;
+    padding: 0 10px;
+    border: 1px solid lightgrey;
+    width: 20%;
+    font-size: 12px;
+    margin-right: 10px;
 }
+
 .new-office form label {
-  margin-right: 5px;
-  font-size: 12px;
+    margin-right: 5px;
+    font-size: 12px;
 }
+
 .create-office {
-  float: right;
-  background: #00afec;
-  height: 30px;
-  border: 0;
-  color: white;
-  cursor: pointer;
-  font-size: 12px;
-  box-shadow: 0px 3px 8px lightgrey;
-  margin-left: auto;
+    float: right;
+    background: #00afec;
+    height: 30px;
+    border: 0;
+    color: white;
+    cursor: pointer;
+    font-size: 12px;
+    box-shadow: 0px 3px 8px lightgrey;
+    margin-left: auto;
 }
 
 .search-container {
-  margin: 1em 1em 1em 0;
+    margin: 1em 1em 1em 0;
 }
+
 .search-container input {
-  width: 30%;
-  height: 30px;
-  border: 1px solid lightgray;
-  padding-left: 30px;
-  font-size: 13px;
+    width: 30%;
+    height: 30px;
+    border: 1px solid lightgray;
+    padding-left: 30px;
+    font-size: 13px;
 }
 
 .fas:hover {
-  color: lightblue;
+    color: lightblue;
 }
+
 .options {
-  display: flex;
-  justify-content: flex-end;
-  width: 50%;
+    display: flex;
+    justify-content: flex-end;
+    width: 50%;
 }
 
 .list {
-  display: flex;
-  align-items: center;
-  border-top: 1px solid lightgrey;
-  padding: 10px;
-  cursor: pointer;
-  justify-content: space-between;
+    display: flex;
+    align-items: center;
+    border-top: 1px solid lightgrey;
+    padding: 10px;
+    cursor: pointer;
+    justify-content: space-between;
 }
+
 .list i {
-  margin-left: 5px;
-  color: grey;
+    margin-left: 5px;
+    color: grey;
 }
+
 .user-data {
-  display: flex;
+    display: flex;
 }
+
 .list p {
-  margin: 0;
+    margin: 0;
 }
+
 .list:hover {
-  background-color: rgba(0, 0, 0, 0.08);
+    background-color: rgba(0, 0, 0, 0.08);
 }
+
 .list .details {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
+
 .list .details .name {
-  font-weight: bold;
-  font-family: Arial, Helvetica, sans-serif;
-  color: #064f69;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #064f69;
 }
+
 .profile {
-  height: 50px;
-  width: 50px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  display: inline-block;
-  margin-right: 10px;
-  border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: inline-block;
+    margin-right: 10px;
+    border-radius: 50%;
 }
+
 .update-profile {
-  margin: auto;
-  display: flex;
+    margin: auto;
+    display: flex;
 }
+
 .update-profile .fa-pen {
-  display: flex;
-  align-self: flex-end;
-  justify-self: self-start;
-  color: red;
-  margin-left: 100%;
+    display: flex;
+    align-self: flex-end;
+    justify-self: self-start;
+    color: red;
+    margin-left: 100%;
 }
+
 .bio {
-  color: gray;
-  font-size: 14px;
+    color: gray;
+    font-size: 14px;
 }
 
 #update-modal {
-  position: fixed;
-  overflow: auto;
-  display: flex;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  z-index: 100;
-  background: rgba(0, 0, 0, 0.2784313725490196);
-  justify-content: center;
-  align-items: center;
-  opacity: 1;
-  transition: opacity 0.5s;
+    position: fixed;
+    overflow: auto;
+    display: flex;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.2784313725490196);
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    transition: opacity 0.5s;
 }
+
 #update-modal.d-none {
-  opacity: 0;
-  z-index: 0;
-  transition: all 0.5s;
+    opacity: 0;
+    z-index: 0;
+    transition: all 0.5s;
 }
+
 #update-modal form {
-  padding: 2rem;
-  padding-top: 0;
-  background: white;
-  border-radius: 3px;
+    padding: 2rem;
+    padding-top: 0;
+    background: white;
+    border-radius: 3px;
 }
+
 #update-modal .input-group {
-  margin-top: 1rem;
-  display: flex;
-  flex-flow: column;
+    margin-top: 1rem;
+    display: flex;
+    flex-flow: column;
 }
+
 .input-group label {
-  margin-bottom: 5px;
-  color: #5d5d5d;
+    margin-bottom: 5px;
+    color: #5d5d5d;
 }
+
 .input-group input[type="text"],
 .input-group select {
-  border-radius: 3px;
-  padding-left: 1rem;
-  height: 36px;
-  width: 20rem;
-  border: 1px solid lightgrey;
+    border-radius: 3px;
+    padding-left: 1rem;
+    height: 36px;
+    width: 20rem;
+    border: 1px solid lightgrey;
 }
+
 .input-group select {
-  padding-left: 0 1rem;
-  height: 38px;
-  width: 21rem;
+    padding-left: 0 1rem;
+    height: 38px;
+    width: 21rem;
 }
+
 #update-modal .input-group .upload {
-  color: transparent;
+    color: transparent;
 }
+
 #update-modal .input-group .upload::-webkit-file-upload-button {
-  display: none;
+    display: none;
 }
+
 #update-modal .input-group .upload::before {
-  content: "Upload Logo?";
-  background: orange;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: 0;
-  color: #fff;
-  cursor: pointer;
-  height: 36px;
-  white-space: nowrap;
-  outline: 0;
-  width: 100%;
+    content: "Upload Logo?";
+    background: orange;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    color: #fff;
+    cursor: pointer;
+    height: 36px;
+    white-space: nowrap;
+    outline: 0;
+    width: 100%;
 }
+
 #update-modal .input-group .create {
-  background: #00afec;
-  height: 36px;
-  border: 0;
-  color: white;
-  cursor: pointer;
+    background: #00afec;
+    height: 36px;
+    border: 0;
+    color: white;
+    cursor: pointer;
 }
+
 .title h4 {
-  display: flex;
-  flex-flow: row;
-  justify-content: space-between;
-  margin-bottom: 0;
-  font-size: 1.2em;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    margin-bottom: 0;
+    font-size: 1.2em;
 }
 
 #delete-modal {
-  position: fixed;
-  overflow: auto;
-  display: flex;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  z-index: 100;
-  background: rgba(0, 0, 0, 0.2784313725490196);
-  justify-content: center;
-  align-items: center;
-  opacity: 1;
-  transition: opacity 0.5s;
+    position: fixed;
+    overflow: auto;
+    display: flex;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.2784313725490196);
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    transition: opacity 0.5s;
 }
+
 #delete-modal.d-none {
-  opacity: 0;
-  z-index: 0;
-  transition: all 0.5s;
+    opacity: 0;
+    z-index: 0;
+    transition: all 0.5s;
 }
+
 #delete-modal form {
-  background: white;
-  padding: 0 2rem;
-  border-radius: 3px;
-  margin-bottom: 10rem;
+    background: white;
+    padding: 0 2rem;
+    border-radius: 3px;
+    margin-bottom: 10rem;
 }
+
 #delete-modal .input-group {
-  display: flex;
-  justify-content: space-between;
-  padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
 }
+
 #delete-modal .input-group .no {
-  background: tomato;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 2px;
-  color: white;
-  cursor: pointer;
+    background: tomato;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 2px;
+    color: white;
+    cursor: pointer;
 }
+
 #delete-modal .input-group .yes {
-  padding: 0.5rem 1rem;
-  border: none;
-  background: #00afec;
-  color: white;
-  border-radius: 2px;
-  cursor: pointer;
+    padding: 0.5rem 1rem;
+    border: none;
+    background: #00afec;
+    color: white;
+    border-radius: 2px;
+    cursor: pointer;
 }
+
 @media screen and (max-width: 420px) {
-  .search-container,
-  .list {
-    width: 100% !important;
-  }
+    .search-container,
+    .list {
+        width: 100% !important;
+    }
 }
 
 @media screen and (max-width: 800px) {
-  .list {
-    width: 80% !important;
-  }
-  * {
-    font-size: 12px;
-  }
+    .list {
+        width: 80% !important;
+    }
+
+    * {
+        font-size: 12px;
+    }
 }
