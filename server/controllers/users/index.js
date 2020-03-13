@@ -5,8 +5,8 @@ import { Admin, User } from "../../helpers/roles";
 import bcrypt from "../../helpers/bcrypt";
 import { createToken } from "../../helpers/jwt";
 
-export default class UserController {
-  static async auth(req, res) {
+export default {
+  async auth(req, res) {
     try {
       const message = "Invalid Email/Password";
       const { email, password } = req.body;
@@ -25,4 +25,4 @@ export default class UserController {
       return badRequest(res, err);
     }
   }
-}
+};
