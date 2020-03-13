@@ -1,10 +1,12 @@
-var path = require("path"),
-  fs = require("fs");
+/* eslint-disable import/no-dynamic-require */
+
+const path = require("path");
+const fs = require("fs");
 
 module.exports = (dir, name) => {
   const basename = path.basename(name);
-  String.prototype.capitalize = function() {
-    return this && this[0].toUpperCase() + this.slice(1);
+  const capitalize = str => {
+    return str && str[0].toUpperCase() + str.slice(1);
   };
   const files = fs
     .readdirSync(dir)
@@ -14,8 +16,9 @@ module.exports = (dir, name) => {
     );
 
   return files.reduce((acc, file) => {
+    // eslint-disable-next-line global-require
     const context = require(path.join(dir, file));
-    acc[file.replace(".js", "").capitalize()] = context;
+    acc[capitalize(file.replace(".js", ""))] = context;
     return acc;
   }, {});
 };

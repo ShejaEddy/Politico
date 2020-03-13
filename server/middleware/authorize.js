@@ -1,3 +1,6 @@
+import { some } from "lodash";
+import { notAuthorized } from "../helpers/response";
+
 export default (...roles) => {
   const isAllowed = role => some(roles, role);
   return (req, res, next) => {

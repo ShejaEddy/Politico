@@ -10,10 +10,7 @@ export default class UserController {
     try {
       const message = "Invalid Email/Password";
       const { email, password } = req.body;
-      const {
-        rowCount,
-        rows
-      } = await db.query(Users.findByEmail, [email]);
+      const { rowCount, rows } = await db.query(Users.findByEmail, [email]);
       if (!rowCount) throw new Error(message);
       const user = rows[0];
       const ok = await bcrypt.comparePassword(user.password, password);
@@ -23,9 +20,9 @@ export default class UserController {
       payload.role = user.isAdmin ? Admin : User;
       const token = await createToken(payload);
       delete user.password;
-      return okResponse(res, [{token, user}]);
+      return okResponse(res, { token, user });
     } catch (err) {
-      badRequest(res, err);
+      return badRequest(res, err);
     }
   }
 }

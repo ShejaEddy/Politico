@@ -2,10 +2,8 @@ import jwt from "jsonwebtoken";
 import { isEmpty } from "lodash";
 import db from "../database";
 import { Users } from "../database/models";
-import dotenv from "dotenv";
 import { notAuthorized, badRequest, notFound } from "../helpers/response";
 
-dotenv.config();
 const { JWT_SECRET_KEY } = process.env;
 
 export default async (req, res, next) => {
@@ -28,6 +26,6 @@ export default async (req, res, next) => {
     }
     return notAuthorized(res);
   } catch (error) {
-    badRequest(res, error);
+    return badRequest(res, error);
   }
 };
