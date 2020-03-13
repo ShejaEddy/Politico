@@ -7,9 +7,7 @@ const seeds = filesReader(__dirname, __filename);
 (async () => {
   const promises = Object.keys(seeds).map(async seedName => {
     logger.info(`seeding ${seedName}...`);
-    await db
-      .query(...seeds[seedName])
-      .then(() => logger.info(`${seedName} seeded successfully`));
+    await db.query(...seeds[seedName]);
   });
   await Promise.all(promises);
-})().catch(error => logger.error(error));
+})();
