@@ -47,7 +47,9 @@
           </header>
           <ul>
             <li onclick="ChangeView('vote')" id="parties">
-              <i class="fas fa-home main-opt"></i><span class="opt">vote</span>
+              <i class="fas fa-home main-opt"></i>
+              <span class="opt">vote
+              </span>
               <i class="fas fa-plus flt-right"></i>
             </li>
             <li onclick="ChangeView('petitions')" id="petitions">
@@ -97,7 +99,16 @@
             <hr />
             <div class="my-votes">
               <div class="candidates-body">
-                <h4>My Votes</h4>
+                <h4>My Votes
+                  <select style="background-color: #00afec; cursor:pointer; color: white"  id="select_3">
+                    <option>
+                      2020
+                    </option>
+                    <option>
+                      2019
+                    </option>
+                  </select>
+                </h4>
                 <div class="all-candidates"></div>
               </div>
             </div>
