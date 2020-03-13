@@ -1,12 +1,13 @@
 const models = require("../models");
 const db = require("../index");
+const logger = require("../../helpers/logger");
 
 (async () => {
-  console.log("Creating tables ...");
-  const promises = Object.keys(models).map(
-    async modelName => await db.query(models[modelName].migrateUp)
+  logger.info("Creating tables ...");
+  const promises = Object.keys(models).map(modelName =>
+    db.query(models[modelName].migrateUp)
   );
-  return await Promise.all(promises).then(() =>
-    console.log("Tables created successfully")
+  await Promise.all(promises).then(() =>
+    logger.info("Tables created successfully")
   );
-})().catch(error => console.log(error));
+})().catch(error => logger.error(error));

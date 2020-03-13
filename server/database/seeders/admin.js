@@ -1,6 +1,6 @@
-const bcrypt = require("../../helpers/bcrypt");
 const moment = require("moment");
 const models = require("../models");
+const bcrypt = require("../../helpers/bcrypt");
 
 const { Users } = models;
 const data = [

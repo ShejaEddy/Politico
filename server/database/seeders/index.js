@@ -1,15 +1,15 @@
-/* eslint-disable no-console */
 const filesReader = require("../../helpers/readFiles");
 const db = require("../index");
+const logger = require("../../helpers/logger");
 
 const seeds = filesReader(__dirname, __filename);
 
 (async () => {
   const promises = Object.keys(seeds).map(async seedName => {
-    console.log(`seeding ${seedName}...`);
+    logger.info(`seeding ${seedName}...`);
     await db
       .query(...seeds[seedName])
-      .then(() => console.log(`${seedName} seeded successfully`));
+      .then(() => logger.info(`${seedName} seeded successfully`));
   });
   await Promise.all(promises);
-})().catch(error => console.log(error));
+})().catch(error => logger.error(error));
