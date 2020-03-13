@@ -79,7 +79,7 @@
                             Description
                         </th>
                         <th class="image-header">
-                            Image/Video
+                            Evidence
                         </th>
                     </tr>
                     </thead>
@@ -153,10 +153,11 @@
 
             <div class="evidence input-group">
                 <p class="sub-title">Provide evidence to support your claim (choose Image or Video) </p>
-                <p class="ev1">Upload Image?</p>
+                <p class="ev1" onclick="openFile()">Upload Image?</p>
+                <input type="file" class="fileInput d-none">
                 <div class="input-group"><input type="url" placeholder="Video link url" class="ev2"></div>
             </div>
-            <button type="submit" value="submit" class="submit-btn">submit</button>
+            <button type="submit" value="submit" class="submit-btn">File Petition</button>
         </form>
     </div>
 </div>
