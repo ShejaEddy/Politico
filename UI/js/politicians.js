@@ -12,9 +12,9 @@ el(".close-profile").addEventListener("click", () => {
 		el('#logo-input').click();
 	})
 
-	let div = el('#politicians-list');
+	const div = el('#politicians-list');
 	let id;
-	let politicians = [
+	const politicians = [
 		{ name: 'Sheja Eddy', office: 'President of the nation', party: 'FPR INKOTANYI', logo: `../img/avatar.png`, phoneNumber:'07843456543', nId: '2345678998766'},
 		{ name: 'Nshuti Aimable', office: 'Minister of health', party: 'GREEN PARTY', logo: `../img/avatar.png`, phoneNumber:'07843456543', nId: '2345678998766'},
 		{ name: 'Karasira Blaise', office: 'Federal Judge', party: 'FPR INKOTANYI', logo: `../img/avatar.png`, phoneNumber:'07843456543', nId: '2345678998766'},
@@ -69,7 +69,7 @@ el(".close-profile").addEventListener("click", () => {
 	el('.update-upload').addEventListener('click', ()=>{
 		el('#logo-input').click();
 		el('#logo-input').addEventListener('change', (e)=>{
-		  var target = e.target.files[0];
+		  const target = e.target.files[0];
 	      if (!target.type.includes("image/")) {
 	        alert("Please select an image file");
 	        return;
@@ -104,7 +104,7 @@ el(".close-profile").addEventListener("click", () => {
 		setDOM(politicians);
 		image = null;
 		el('.create').disabled = true;
-		var taoster = el("#toaster");
+		const taoster = el("#toaster");
 		toaster.className = "show";
 		toaster.innerText = "Politician updated successfully";
 		toaster.style.backgroundColor = "#10a567";
@@ -115,7 +115,7 @@ el(".close-profile").addEventListener("click", () => {
 		politicians.splice(id, 1);
 		setDOM(politicians);
 		closeModal('delete-modal');
-		var taoster = el("#toaster");
+		const taoster = el("#toaster");
 		toaster.className = "show";
 		toaster.innerText = "Politician deleted successfully";
 		toaster.style.backgroundColor = "red";

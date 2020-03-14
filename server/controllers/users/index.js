@@ -44,5 +44,17 @@ export default {
     } catch (error) {
       return badRequest(res, error);
     }
+  },
+  async getOne(req, res) {
+    try {
+      const { id } = req.params;
+      const { rowCount, rows } = await db.query(Users.findById, [id]);
+      if (!rowCount) return notFound(res, `User not found`);
+      const user = rows[0];
+      delete user.password;
+      return okResponse(res, user);
+    } catch (error) {
+      return badRequest(res, error);
+    }
   }
 };
