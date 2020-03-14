@@ -6,51 +6,31 @@ const allSchemas = {
     firstname: Joi.string()
       .trim()
       .required(),
-    lastname: Joi.string()
-      .trim()
-      .required(),
-    othername: Joi.string()
-      .trim()
-      .required(),
+    lastname: Joi.string().required(),
+    othername: Joi.string(),
     email: Joi.string()
       .email()
-      .trim()
       .required(),
     phoneNumber: Joi.string()
-      .trim()
-      .required(),
-    passportUrl: Joi.string()
-      .trim()
-      .required(),
+      .required()
+      .regex(/^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/im),
+    nationalId: Joi.string().required(),
+    passportUrl: Joi.string().uri(),
     password: Joi.string()
       .regex(/^[a-z0-9]+$/i)
       .min(6)
       .required(),
     isAdmin: Joi.boolean().required()
   }),
+
   PUT: Joi.object().keys({
-    firstname: Joi.string()
-      .trim()
-      .required(),
-    lastname: Joi.string()
-      .trim()
-      .required(),
-    othername: Joi.string()
-      .trim()
-      .required(),
+    firstname: Joi.string().trim(),
+    lastname: Joi.string().trim(),
+    othername: Joi.string().trim(),
     email: Joi.string()
-      .email()
       .trim()
-      .required(),
-    phoneNumber: Joi.string()
-      .trim()
-      .required(),
-    passportUrl: Joi.string()
-      .trim()
-      .required(),
-    nationalId: Joi.string()
-      .trim()
-      .required()
+      .email(),
+    passportUrl: Joi.string().uri()
   })
 };
 

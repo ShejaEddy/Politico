@@ -9,6 +9,7 @@ const data = [
   "patron",
   "admin@example.com",
   "0784141587",
+  "1234567890987",
   "hhts://avatar.png",
   bcrypt.hashPassword("password"),
   true,

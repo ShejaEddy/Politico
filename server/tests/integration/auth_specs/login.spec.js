@@ -53,7 +53,7 @@ describe("Authentication Controller", () => {
   });
 
   describe("Authentication Success", () => {
-    test("should return auth success: user", () => {
+    test("should return auth success: user", done => {
       return request
         .post("/api/v1/auth")
         .send(adminData)
@@ -65,6 +65,7 @@ describe("Authentication Controller", () => {
           expect(Object.keys(res.body.data)).toEqual(
             expect.arrayContaining(["user", "token"])
           );
+          done();
         });
     });
   });

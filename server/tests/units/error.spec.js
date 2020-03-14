@@ -1,31 +1,26 @@
 import dbErrors from "../../helpers/dbErrors";
 
-const errorsUnique = [
-  {
-    path: "email",
-    message: "Unique constraint violation",
-    type: "unique violation"
-  }
-];
-const errorUndefined = [
-  {
-    path: "password",
-    message: "Cant generate hash for nil value",
-    type: "SOME_THING_ELSE"
-  }
-];
+const errorsUnique = {
+  detail: "Key (email) (shejaeddy@gmail.com) already exists.",
+  code: "23505"
+};
+const errorUndefined = {
+  detail: "Key (email) can not be null",
+  code: "SOME_OTHER_CODES",
+  message: "violated not null constraint"
+};
 describe("Database Error", () => {
   test("should return unique validation error", () => {
-    const response = dbErrors({ errors: errorsUnique });
+    const response = dbErrors(errorsUnique);
     expect(response).toEqual(
       expect.objectContaining({ email: "email is already taken" })
     );
   });
 
   test("should return other db error", () => {
-    const response = dbErrors({ errors: errorUndefined });
+    const response = dbErrors(errorUndefined);
     expect(response).toEqual(
-      expect.objectContaining({ password: "Cant generate hash for nil value" })
+      expect.objectContaining({ email: "violated not null constraint" })
     );
   });
 
