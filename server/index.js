@@ -1,13 +1,16 @@
 import express from "express";
 import cors from "cors";
+import bodyParser from "body-parser";
+import morgan from "morgan";
+import logger from "./helpers/logger";
 import routes from "./routes";
+import { notFound } from "./helpers/response";
 
 const app = express();
-const PORT = process.env.PORT || 3000;
-
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 app.get("/", (_req, res) =>
   res.status(200).json({
@@ -17,12 +20,23 @@ app.get("/", (_req, res) =>
 );
 
 app.use("/api", routes);
-
-const server = app.listen(
-  PORT,
-  () =>
-    process.env.NODE_ENV === "development" &&
-    console.log(`Listening on port ${PORT}`)
+app.use(
+  morgan("dev", {
+    skip: (_req, res) => res.statusCode < 400,
+    stream: process.stderr
+  })
 );
 
-export default server;
+app.use(
+  morgan("dev", {
+    skip: (_req, res) => res.statusCode >= 400,
+    stream: process.stdout
+  })
+);
+
+app.use((_req, res) => {
+  logger.error("404 page requested");
+  notFound(res, "This page does not exist!");
+});
+
+export default app;

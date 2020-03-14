@@ -1,5 +1,6 @@
 const { Pool } = require("pg");
 const dbConfig = require("../config/db.config");
+
 const env = process.env.NODE_ENV || "development";
 const config = dbConfig[env];
 

@@ -38,8 +38,8 @@ const candidates = [
     office: "Minister of Defence"
   }
 ];
-let div = el(".all-candidates");
-let id, isOffice, isParty, isResult;
+const div = el(".all-candidates");
+let id; let isOffice; let isParty; let isResult;
 if (el(".party-profile")) isParty = true;
 if (el(".office-details")) isOffice = true;
 if (el(".candidates-body")) isResult = true;
@@ -90,7 +90,7 @@ if (el(".vote-approved")) {
     const voted = [candidates[id]];
     setDOM(voted);
     elAll(".vote-btn")[0].innerText = "Voting...";
-    var taoster = el("#toaster");
+    const taoster = el("#toaster");
     setTimeout(function() {
       toaster.className = "show";
       toaster.innerText = "Vote Casted successfully";

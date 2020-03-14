@@ -1,9 +1,9 @@
 const el = elm => document.querySelector(elm);
-var modal = el("#myModal");
+const modal = el("#myModal");
 
-var btn = el("#myBtn");
+const btn = el("#myBtn");
 
-var span = el(".close");
+const span = el(".close");
 
 btn.onclick = function() {
   modal.style.display = "block";
