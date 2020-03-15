@@ -15,5 +15,13 @@ const migrateUp = `CREATE TABLE IF NOT EXISTS
                       )`;
 const findByEmail = `SELECT * FROM user_info WHERE email= $1`;
 const findById = `SELECT * FROM user_info WHERE id = $1`;
+<<<<<<< HEAD
 
 module.exports = { migrateUp, findByEmail, findById };
+=======
+const create = `INSERT INTO user_info (firstname, lastname, othername, email, phoneNumber, nationalId, passportUrl, password, isAdmin, created_at, updated_at)
+                        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
+                        RETURNING *`;
+
+module.exports = { migrateUp, findByEmail, findById, create };
+>>>>>>> feature(offices-endpoints): CRUD for offices endpoints [Finishes #171801722 #171743012 #171743024 #171743007]
