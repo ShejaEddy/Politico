@@ -1,10 +1,11 @@
-import moment from "moment";
 import { Users } from "../../database/models";
 import db from "../../database";
 import { badRequest, okResponse } from "../../helpers/response";
 import { Admin, User } from "../../helpers/roles";
 import bcrypt from "../../helpers/bcrypt";
 import { createToken } from "../../helpers/jwt";
+import insertQuery from "../../database/helpers/insertQuery";
+import setParams from "../../database/helpers/setParams";
 
 export default {
   async auth(req, res) {
@@ -29,29 +30,10 @@ export default {
   async create(req, res) {
     try {
       req.body.password = await bcrypt.hashPassword(req.body.password);
-      const {
-        firstname,
-        lastname,
-        othername,
-        email,
-        phoneNumber,
-        nationalId,
-        passportUrl,
-        password,
-        isAdmin
-      } = req.body;
-      const { rows } = await db.query(Users.create, [
-        firstname,
-        lastname,
-        othername,
-        email,
-        phoneNumber,
-        nationalId,
-        passportUrl,
-        password,
-        isAdmin,
-        moment(new Date())
-      ]);
+      const { rows } = await db.query(
+        insertQuery("party_tb", req.body),
+        setParams(req.body)
+      );
       const user = rows[0];
       const payload = {};
       payload.id = user.id;
