@@ -14,6 +14,5 @@ const migrateUp = `CREATE TABLE IF NOT EXISTS
                       )`;
 const findByEmail = `SELECT * FROM user_info WHERE email= $1`;
 const findById = `SELECT * FROM user_info WHERE id = $1`;
-const update = "UPDATE user_info SET firstname = $2 WHERE id = $1 RETURNING *";
 
-module.exports = { migrateUp, findByEmail, findById, update };
+module.exports = { migrateUp, findByEmail, findById };
