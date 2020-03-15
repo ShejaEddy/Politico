@@ -9,6 +9,17 @@ const newparty = {
 let token;
 let partyId;
 describe("party", () => {
+  beforeAll(() => {
+    return request
+      .post("/api/v1/auth")
+      .send({
+        email: "admin@examle.com",
+        password: "password"
+      })
+      .then(res => {
+        token = res.body.data.token;
+      });
+  });
   test("should be created successfully", done => {
     return request
       .post("/api/v1/parties")
