@@ -1,17 +1,22 @@
-const bcrypt = require("../../helpers/bcrypt");
 const moment = require("moment");
-const models = require("../models");
+const bcrypt = require("../../helpers/bcrypt");
 
-const { Users } = models;
 const data = [
   "Sheja",
   "Eddy",
   "patron",
   "admin@example.com",
   "0784141587",
-  "hhts://avatar.png",
+  "1234567890987",
+  "https://avatar.png",
   bcrypt.hashPassword("password"),
   true,
+  moment(new Date()),
   moment(new Date())
 ];
-module.exports = [Users.create, data];
+module.exports = [
+  `INSERT INTO user_info (firstname, lastname, othername, email, phoneNumber, nationalId, passportUrl, password, isAdmin, created_at, updated_at)
+                        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
+                        RETURNING *`,
+  data
+];

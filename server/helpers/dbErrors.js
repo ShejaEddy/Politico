@@ -1,21 +1,20 @@
-import { isEmpty } from "lodash";
-
 export default err => {
   const error = {};
-  if (isEmpty(err.errors)) {
+  let path = "message";
+  const { detail, code, message } = err;
+  if (!detail) {
     error.message = err.message || "Bad request";
     return error;
   }
-  err.errors.forEach(element => {
-    const { path, message, type } = element;
-    switch (type) {
-      case "unique violation":
-        error[path] = `${path} is already taken`;
-        break;
-      default:
-        error[path] = message;
-        break;
-    }
-  });
+  [, path] = detail.split("(");
+  [path] = path.split(")");
+  switch (code) {
+    case "23505":
+      error[path] = `${path} is already taken`;
+      break;
+    default:
+      error[path] = message;
+      break;
+  }
   return error;
 };
