@@ -31,7 +31,7 @@ export default {
     try {
       req.body.password = await bcrypt.hashPassword(req.body.password);
       const { rows } = await db.query(
-        insertQuery("party_tb", req.body),
+        insertQuery("user_info", req.body),
         setParams(req.body)
       );
       const user = rows[0];

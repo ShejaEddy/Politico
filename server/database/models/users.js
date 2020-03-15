@@ -10,7 +10,8 @@ const migrateUp = `CREATE TABLE IF NOT EXISTS
                           nationalId VARCHAR(511) NOT NULL UNIQUE,
                           isAdmin BOOLEAN NOT NULL,
                           password VARCHAR(255) NOT NULL,
-                          created_at TIMESTAMP
+                          created_at TIMESTAMP,
+                          updated_at TIMESTAMP
                       )`;
 const findByEmail = `SELECT * FROM user_info WHERE email= $1`;
 const findById = `SELECT * FROM user_info WHERE id = $1`;
