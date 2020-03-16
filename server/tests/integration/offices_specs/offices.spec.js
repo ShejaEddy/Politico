@@ -91,14 +91,13 @@ describe("Office", () => {
           expect.arrayContaining(["status", "error", "message"])
         );
         expect(Object.keys(err.body.error)).toEqual(
-          expect.arrayContaining(["name", "hqAddress", "logoUrl"])
+          expect.arrayContaining(attributes)
         );
         expect(err.body.message).toMatch(/Validation error/);
         expect(err.body.error).toEqual(
           expect.objectContaining({
             name: "name is required",
-            hqAddress: "hqAddress is required",
-            logoUrl: "logoUrl is required"
+            type: "type is required"
           })
         );
         done();

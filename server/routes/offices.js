@@ -8,23 +8,23 @@ import { Admin } from "../helpers/roles";
 const officeRouters = Router();
 officeRouters
   .post(
-    "/parties",
+    "/offices",
     authenticate,
     authorize(Admin),
     validate,
     OfficeControllers.create
   )
-  .get("/parties", authenticate, OfficeControllers.getAll)
-  .get("/parties/:id", authenticate, OfficeControllers.getOne)
+  .get("/offices", authenticate, OfficeControllers.getAll)
+  .get("/offices/:id", authenticate, OfficeControllers.getOne)
   .put(
-    "/parties/:id",
+    "/offices/:id",
     authenticate,
     authorize(Admin),
     validate,
     OfficeControllers.update
   )
   .delete(
-    "/parties/:id",
+    "/offices/:id",
     authenticate,
     authorize(Admin),
     OfficeControllers.deleteOne
