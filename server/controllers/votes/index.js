@@ -33,5 +33,18 @@ export default class VotesControllers {
     } catch (error) {
       return badRequest(res, error);
     }
+  },
+  async get(req, res) {
+    try {
+      const { id } = req.params;
+      const { rows, rowCount } = await db.query(Votes.results, [id]);
+      if (!rowCount)
+        throw new Error(
+          `Unfortunately, no results are available at the moment`
+        );
+      return okResponse(res, rows[0]);
+    } catch (error) {
+      return badRequest(res, error);
+    }
   }
-}
+};
