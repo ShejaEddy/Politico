@@ -7,7 +7,6 @@ const newCandidate = {
   party: 1
 };
 let token;
-
 describe("party", () => {
   beforeAll(() => {
     return request
