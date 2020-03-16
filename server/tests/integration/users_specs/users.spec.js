@@ -128,9 +128,7 @@ describe("User", () => {
         expect(Object.keys(err.body)).toEqual(
           expect.arrayContaining(["status", "error"])
         );
-        expect(err.body.error.message).toMatch(
-          /invalid input syntax for type integer/
-        );
+        expect(err.body.error.message).toMatch(/invalid input syntax/);
         done();
       });
   });

@@ -6,18 +6,12 @@ import authorize from "../middleware/authorize";
 import { Admin } from "../helpers/roles";
 
 const partyRouters = Router();
-
+partyRouters.all("*", authenticate);
 partyRouters
-  .post(
-    "/parties",
-    authenticate,
-    authorize(Admin),
-    validate,
-    PartyControllers.create
-  )
-  .get("/parties", authenticate, PartyControllers.getAll)
-  .get("/parties/:id", authenticate, PartyControllers.getOne)
-  .put("/parties/:id", authenticate, PartyControllers.update)
-  .delete("/parties/:id", authenticate, PartyControllers.deleteOne);
+  .post("/parties", authorize(Admin), validate, PartyControllers.create)
+  .get("/parties", PartyControllers.getAll)
+  .get("/parties/:id", PartyControllers.getOne)
+  .put("/parties/:id", validate, PartyControllers.update)
+  .delete("/parties/:id", PartyControllers.deleteOne);
 
 export default partyRouters;
