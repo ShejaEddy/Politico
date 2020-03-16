@@ -12,7 +12,7 @@ describe("Office", () => {
     return request
       .post("/api/v1/auth")
       .send({
-        email: "admin@examle.com",
+        email: "admin@example.com",
         password: "password"
       })
       .then(res => {
