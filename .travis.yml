@@ -3,23 +3,23 @@ language: node_js
 node_js:
   - node
 
-script: echo "CI is running......"
-
 cache:
   directories:
-  - node_modules
+    - node_modules
 
 before_install:
-- npm update
+  - npm update
 
 install:
-- npm install
-
+  - npm install
 
 services:
-- postgresql
+  - postgresql
+
+before_script:
+  - psql -c 'create database politico_db;' -U postgres
+  - psql -c "create user politico with PASSWORD 'sheja';" -U postgres
 
 script:
-- npm test
-- npm run coveralls
-
+  - npm test
+  - npm run coveralls
