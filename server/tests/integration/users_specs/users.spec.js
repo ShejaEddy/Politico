@@ -5,9 +5,9 @@ const newUser = {
   firstname: "Mark",
   lastname: "Zuckerberg",
   othername: "Facebook",
-  email: "user@example.com",
-  phoneNumber: "250784145652",
-  nationalId: "12345678911",
+  email: "facebook@example.com",
+  phoneNumber: "250774145152",
+  nationalId: "12145678912",
   passportUrl: "https://avatar.png",
   password: "password",
   isAdmin: false
