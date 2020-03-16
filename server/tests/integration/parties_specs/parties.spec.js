@@ -1,7 +1,7 @@
 import "@babel/polyfill";
 import request from "../../helpers/request";
 
-const newparty = {
+const newParty = {
   name: "FPR Inkotanyi",
   logoUrl: "https://logo.png",
   hqAddress: "Remera/Kigali"
@@ -34,7 +34,7 @@ describe("Part Controllers", () => {
       return request
         .post("/api/v1/parties")
         .set("Authorization", `Bearer ${adminToken}`)
-        .send(newparty)
+        .send(newParty)
         .expect(201)
         .then(res => {
           expect(Object.keys(res.body)).toEqual(
@@ -52,7 +52,7 @@ describe("Part Controllers", () => {
       return request
         .post("/api/v1/parties")
         .set("Authorization", `Bearer ${adminToken}`)
-        .send(newparty)
+        .send(newParty)
         .expect(400)
         .then(err => {
           expect(Object.keys(err.body)).toEqual(
@@ -69,7 +69,7 @@ describe("Part Controllers", () => {
       return request
         .post(`/api/v1/parties`)
         .set("Authorization", `Bearer ${userToken}`)
-        .send(newparty)
+        .send(newParty)
         .expect(401)
         .then(err => {
           expect(Object.keys(err.body)).toEqual(
@@ -92,7 +92,7 @@ describe("Part Controllers", () => {
             expect.arrayContaining(["status", "error", "message"])
           );
           expect(Object.keys(err.body.error)).toEqual(
-            expect.arrayContaining(attributes)
+            expect.arrayContaining(Object.keys(newParty))
           );
           expect(err.body.message).toMatch(/Validation error/);
           expect(err.body.error).toEqual(
