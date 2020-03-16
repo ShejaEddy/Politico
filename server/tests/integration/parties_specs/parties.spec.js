@@ -152,4 +152,95 @@ describe("party", () => {
         done();
       });
   });
+
+  test("should be updated successfully", done => {
+    return request
+      .put(`/api/v1/parties/${partyId}`)
+      .send({ name: "another name" })
+      .expect(200)
+      .then(res => {
+        expect(Object.keys(res.body)).toEqual(
+          expect.arrayContaining(["status", "data"])
+        );
+        expect(Object.keys(res.body.data)).toEqual(
+          expect.arrayContaining(Object.keys(newparty))
+        );
+        expect(res.body.data.name).toEqual("another name");
+        expect(res.body.message).toMatch(/Office updated successfully/);
+        done();
+      });
+  });
+  test("should not be found", done => {
+    return request
+      .put(`/api/v1/parties/12345`)
+      .set("Authorization", `Bearer ${token}`)
+      .send({ name: "another name" })
+      .expect(404)
+      .then(err => {
+        expect(Object.keys(err.body)).toEqual(
+          expect.arrayContaining(["status", "error"])
+        );
+        expect(err.body.error.message).toMatch(/Office not found/);
+        done();
+      });
+  });
+
+  test("should return badRequest for not integers id", done => {
+    return request
+      .put(`/api/v1/parties/notinteger`)
+      .set("Authorization", `Bearer ${token}`)
+      .send({ name: "another name" })
+      .expect(400)
+      .then(err => {
+        expect(Object.keys(err.body)).toEqual(
+          expect.arrayContaining(["status", "error"])
+        );
+        expect(err.body.error.message).toMatch(
+          /invalid input syntax for type integer/
+        );
+        done();
+      });
+  });
+
+  test("should be deleted successfully", done => {
+    return request
+      .delete(`/api/v1/parties/${partyId}`)
+      .expect(200)
+      .then(res => {
+        expect(Object.keys(res.body)).toEqual(
+          expect.arrayContaining(["status", "message"])
+        );
+        expect(res.body.message).toMatch(/Office deleted successfully/);
+        done();
+      });
+  });
+  test("should not be found", done => {
+    return request
+      .delete(`/api/v1/parties/12345`)
+      .set("Authorization", `Bearer ${token}`)
+      .expect(404)
+      .then(err => {
+        expect(Object.keys(err.body)).toEqual(
+          expect.arrayContaining(["status", "error"])
+        );
+        expect(err.body.error.message).toMatch(/Office not found/);
+        done();
+      });
+  });
+
+  test("should return badRequest for not integers id", done => {
+    return request
+      .delete(`/api/v1/parties/notinteger`)
+      .set("Authorization", `Bearer ${token}`)
+      .expect(400)
+      .then(err => {
+        expect(Object.keys(err.body)).toEqual(
+          expect.arrayContaining(["status", "error"])
+        );
+        expect(err.body.error.message).toMatch(
+          /invalid input syntax for type integer/
+        );
+        done();
+      });
+  });
 });
