@@ -14,7 +14,7 @@ describe("party", () => {
       .post("/api/v1/auth")
       .send({ email: "admin@example.com", password: "password" })
       .then(res => {
-        // token = res.body.data.token;
+        token = res.body.data.token;
       });
   });
   test("should be created successfully", done => {
