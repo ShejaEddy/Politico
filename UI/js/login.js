@@ -5,9 +5,9 @@ if (el(".login-form"))
         login();
     });
 const login = () => {
-    var email = el("#email").value;
-    var password = el("#password").value;
-    var toaster = el("#toaster");
+    const email = el("#email").value;
+    const password = el("#password").value;
+    const toaster = el("#toaster");
     toaster.className = "show";
     if (email === "admin@example.com" && password == "password") {
         toaster.innerText = "Authenticated as Admin successfully";
@@ -39,8 +39,8 @@ if (el(".forgot-form"))
     });
 
 const forgotPwd = () => {
-    var email = el("#email").value;
-    var toaster = el("#toaster");
+    const email = el("#email").value;
+    const toaster = el("#toaster");
     toaster.className = "show";
     if (email === "admin@example.com" || email === "user@example.com") {
         toaster.innerText = "Reset Link sent successfully, Check your emails!";

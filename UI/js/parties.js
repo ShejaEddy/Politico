@@ -12,9 +12,9 @@ const el = query => document.querySelector(query);
       el("#logo-input").click();
     });
 
-  let div = el("#parties-list");
+  const div = el("#parties-list");
   let id;
-  let parties = [
+  const parties = [
     { name: "INGABIRE", hq: "Remera", logo: `../img/1.png` },
     {
       name: "INKOTANYI",
@@ -70,7 +70,7 @@ const el = query => document.querySelector(query);
   el(".update-upload").addEventListener("click", () => {
     el("#logo-input").click();
     el("#logo-input").addEventListener("change", e => {
-      var target = e.target.files[0];
+      const target = e.target.files[0];
       if (!target.type.includes("image/")) {
         alert("Please select an image file");
         return;
@@ -93,7 +93,7 @@ const el = query => document.querySelector(query);
     setDOM(parties);
     image = null;
     el(".create").disabled = true;
-    var taoster = el("#toaster");
+    const taoster = el("#toaster");
     toaster.className = "show";
     toaster.innerText = "Politician updated successfully";
     toaster.style.backgroundColor = "#10a567";
@@ -106,7 +106,7 @@ const el = query => document.querySelector(query);
     parties.splice(id, 1);
     setDOM(parties);
     closeModal("delete-modal");
-    var taoster = el("#toaster");
+    const taoster = el("#toaster");
     toaster.className = "show";
     toaster.innerText = "Party deleted successfully";
     toaster.style.backgroundColor = "red";

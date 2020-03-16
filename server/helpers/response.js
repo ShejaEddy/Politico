@@ -13,4 +13,4 @@ export const okResponse = (res, data, code = 200, message = "Success") =>
 export const notAuthorized = (
   res,
   message = "Unauthorized to perform this action"
-) => res.status(401).json({ status: res.statusCode, message });
+) => res.status(401).json({ status: res.statusCode, error: { message } });

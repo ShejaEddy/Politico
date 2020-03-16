@@ -6,9 +6,9 @@ const el = query => document.querySelector(query);
       e.preventDefault();
     });
 
-  let div = el("#offices-list");
+  const div = el("#offices-list");
   let id;
-  let offices = [
+  const offices = [
     { name: "President", type: "Legislative" },
     { name: "Minister of health", type: "Local Government" },
     { name: "Minister of defense", type: "Federal" },
@@ -57,7 +57,7 @@ const el = query => document.querySelector(query);
     offices[id].type = el(".update-type").value;
     setDOM(offices);
     el(".create").disabled = true;
-    var taoster = el("#toaster");
+    const taoster = el("#toaster");
     toaster.className = "show";
     toaster.innerText = "Politician updated successfully";
     toaster.style.backgroundColor = "#10a567";
@@ -70,7 +70,7 @@ const el = query => document.querySelector(query);
     offices.splice(id, 1);
     setDOM(offices);
     closeModal("delete-modal");
-    var taoster = el("#toaster");
+    const taoster = el("#toaster");
     toaster.className = "show";
     toaster.innerText = "Offices deleted successfully";
     toaster.style.backgroundColor = "red";

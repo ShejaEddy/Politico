@@ -1,6 +1,6 @@
 import { Users } from "../../database/models";
 import db from "../../database";
-import { badRequest, okResponse } from "../../helpers/response";
+import { badRequest, okResponse, notFound } from "../../helpers/response";
 import { Admin, User } from "../../helpers/roles";
 import bcrypt from "../../helpers/bcrypt";
 import { createToken } from "../../helpers/jwt";
@@ -41,6 +41,18 @@ export default {
       const token = await createToken(payload);
       delete user.password;
       return okResponse(res, { token, user }, 201, "User created successfully");
+    } catch (error) {
+      return badRequest(res, error);
+    }
+  },
+  async getOne(req, res) {
+    try {
+      const { id } = req.params;
+      const { rowCount, rows } = await db.query(Users.findById, [id]);
+      if (!rowCount) return notFound(res, `User not found`);
+      const user = rows[0];
+      delete user.password;
+      return okResponse(res, user);
     } catch (error) {
       return badRequest(res, error);
     }

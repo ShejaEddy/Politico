@@ -11,13 +11,13 @@ export default async (req, res, next) => {
   try {
     if (authHeader) {
       const token = authHeader.split(" ")[1];
-      jwt.verify(token, JWT_SECRET_KEY, async (err, payload) => {
+      return jwt.verify(token, JWT_SECRET_KEY, async (err, payload) => {
+        if (err) return notAuthorized(res);
         const {
           id,
           role: { type }
         } = payload;
-        if (err) return notAuthorized(res);
-        const user = await db.query(Users.findById, id);
+        const user = await db.query(Users.findById, [id]);
         if (isEmpty(user)) return notFound(res, "User account not found");
         req.user = user;
         req.user.role = { type };
