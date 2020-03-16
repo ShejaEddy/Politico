@@ -1,6 +1,6 @@
 import { Users } from "../../database/models";
 import db from "../../database";
-import { badRequest, okResponse } from "../../helpers/response";
+import { badRequest, okResponse, notFound } from "../../helpers/response";
 import { Admin, User } from "../../helpers/roles";
 import bcrypt from "../../helpers/bcrypt";
 import { createToken } from "../../helpers/jwt";
