@@ -206,10 +206,7 @@ describe("Office", () => {
       .expect(200)
       .then(res => {
         expect(Object.keys(res.body)).toEqual(
-          expect.arrayContaining(["status", "data"])
-        );
-        expect(Object.keys(res.body.data)).toEqual(
-          expect.arrayContaining(Object.keys(newOffice))
+          expect.arrayContaining(["status", "message"])
         );
         expect(res.body.message).toMatch(/Office deleted successfully/);
         done();
