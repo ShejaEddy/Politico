@@ -1,14 +1,13 @@
 import "@babel/polyfill";
 import request from "../../helpers/request";
 
-const newparty = {
+const newOffice = {
   name: "FPR Inkotanyi",
-  logoUrl: "https://logo.png",
-  hqAddress: "Remera/Kigali"
+  type: "Legislative"
 };
 let token;
-let partyId;
-describe("party", () => {
+let OfficeId;
+describe("Office", () => {
   beforeAll(() => {
     return request
       .post("/api/v1/auth")
@@ -22,25 +21,25 @@ describe("party", () => {
   });
   test("should be created successfully", done => {
     return request
-      .post("/api/v1/parties")
-      .send(newparty)
+      .post("/api/v1/offices")
+      .send(newOffice)
       .expect(201)
       .then(res => {
         expect(Object.keys(res.body)).toEqual(
           expect.arrayContaining(["status", "data"])
         );
         expect(Object.keys(res.body.data)).toEqual(
-          expect.arrayContaining(Object.keys(newparty))
+          expect.arrayContaining(Object.keys(newOffice))
         );
-        expect(res.body.message).toMatch(/Party created successfully/);
-        partyId = res.body.data.id;
+        expect(res.body.message).toMatch(/Office created successfully/);
+        OfficeId = res.body.data.id;
         done();
       });
   });
   test("should not be created twice", done => {
     return request
-      .post("/api/v1/parties")
-      .send(newparty)
+      .post("/api/v1/offices")
+      .send(newOffice)
       .expect(400)
       .then(err => {
         expect(Object.keys(err.body)).toEqual(
@@ -55,7 +54,7 @@ describe("party", () => {
   });
   test("should be validated", done => {
     return request
-      .post("/api/v1/parties")
+      .post("/api/v1/offices")
       .send({})
       .expect(400)
       .then(err => {
@@ -78,7 +77,7 @@ describe("party", () => {
   });
   test("should be returned successfully", done => {
     return request
-      .get(`/api/v1/parties/${partyId}`)
+      .get(`/api/v1/offices/${OfficeId}`)
       .set("Authorization", `Bearer ${token}`)
       .expect(200)
       .then(res => {
@@ -86,7 +85,7 @@ describe("party", () => {
           expect.arrayContaining(["status", "data"])
         );
         expect(Object.keys(res.body.data)).toEqual(
-          expect.arrayContaining(["id", ...Object.keys(newparty)])
+          expect.arrayContaining(["id", ...Object.keys(newOffice)])
         );
         expect(res.body.message).toMatch(/Success/);
         done();
@@ -94,21 +93,21 @@ describe("party", () => {
   });
   test("should not be found", done => {
     return request
-      .get(`/api/v1/parties/12345`)
+      .get(`/api/v1/offices/12345`)
       .set("Authorization", `Bearer ${token}`)
       .expect(404)
       .then(err => {
         expect(Object.keys(err.body)).toEqual(
           expect.arrayContaining(["status", "error"])
         );
-        expect(err.body.error.message).toMatch(/Party not found/);
+        expect(err.body.error.message).toMatch(/Office not found/);
         done();
       });
   });
 
   test("should return badRequest for not integers id", done => {
     return request
-      .get(`/api/v1/parties/notinteger`)
+      .get(`/api/v1/offices/notinteger`)
       .set("Authorization", `Bearer ${token}`)
       .expect(400)
       .then(err => {
@@ -124,7 +123,7 @@ describe("party", () => {
 
   test("should return unauthorized", done => {
     return request
-      .get(`/api/v1/parties/${partyId}`)
+      .get(`/api/v1/offices/${OfficeId}`)
       .expect(401)
       .then(err => {
         expect(Object.keys(err.body)).toEqual(
@@ -136,9 +135,9 @@ describe("party", () => {
         done();
       });
   });
-  test("should return all parties successfully", done => {
+  test("should return all offices successfully", done => {
     return request
-      .get(`/api/v1/parties`)
+      .get(`/api/v1/offices`)
       .set("Authorization", `Bearer ${token}`)
       .expect(200)
       .then(res => {
@@ -146,16 +145,15 @@ describe("party", () => {
           expect.arrayContaining(["status", "data"])
         );
         expect(Object.keys(res.body.data[0])).toEqual(
-          expect.arrayContaining(["id", ...Object.keys(newparty)])
+          expect.arrayContaining(["id", ...Object.keys(newOffice)])
         );
         expect(res.body.message).toMatch(/Success/);
         done();
       });
   });
-
   test("should be updated successfully", done => {
     return request
-      .put(`/api/v1/parties/${partyId}`)
+      .put(`/api/v1/offices/${OfficeId}`)
       .send({ name: "another name" })
       .expect(200)
       .then(res => {
@@ -163,16 +161,16 @@ describe("party", () => {
           expect.arrayContaining(["status", "data"])
         );
         expect(Object.keys(res.body.data)).toEqual(
-          expect.arrayContaining(Object.keys(newparty))
+          expect.arrayContaining(Object.keys(newOffice))
         );
         expect(res.body.data.name).toEqual("another name");
-        expect(res.body.message).toMatch(/Party updated successfully/);
+        expect(res.body.message).toMatch(/Office updated successfully/);
         done();
       });
   });
   test("should not be found", done => {
     return request
-      .put(`/api/v1/parties/12345`)
+      .put(`/api/v1/offices/12345`)
       .set("Authorization", `Bearer ${token}`)
       .send({ name: "another name" })
       .expect(404)
@@ -180,14 +178,14 @@ describe("party", () => {
         expect(Object.keys(err.body)).toEqual(
           expect.arrayContaining(["status", "error"])
         );
-        expect(err.body.error.message).toMatch(/Party not found/);
+        expect(err.body.error.message).toMatch(/Office not found/);
         done();
       });
   });
 
   test("should return badRequest for not integers id", done => {
     return request
-      .put(`/api/v1/parties/notinteger`)
+      .put(`/api/v1/offices/notinteger`)
       .set("Authorization", `Bearer ${token}`)
       .send({ name: "another name" })
       .expect(400)
@@ -204,33 +202,33 @@ describe("party", () => {
 
   test("should be deleted successfully", done => {
     return request
-      .delete(`/api/v1/parties/${partyId}`)
+      .delete(`/api/v1/offices/${OfficeId}`)
       .expect(200)
       .then(res => {
         expect(Object.keys(res.body)).toEqual(
           expect.arrayContaining(["status", "message"])
         );
-        expect(res.body.message).toMatch(/Party deleted successfully/);
+        expect(res.body.message).toMatch(/Office deleted successfully/);
         done();
       });
   });
   test("should not be found", done => {
     return request
-      .delete(`/api/v1/parties/12345`)
+      .delete(`/api/v1/offices/12345`)
       .set("Authorization", `Bearer ${token}`)
       .expect(404)
       .then(err => {
         expect(Object.keys(err.body)).toEqual(
           expect.arrayContaining(["status", "error"])
         );
-        expect(err.body.error.message).toMatch(/Party not found/);
+        expect(err.body.error.message).toMatch(/Office not found/);
         done();
       });
   });
 
   test("should return badRequest for not integers id", done => {
     return request
-      .delete(`/api/v1/parties/notinteger`)
+      .delete(`/api/v1/offices/notinteger`)
       .set("Authorization", `Bearer ${token}`)
       .expect(400)
       .then(err => {
