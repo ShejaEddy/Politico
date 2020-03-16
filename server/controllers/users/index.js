@@ -7,8 +7,8 @@ import { createToken } from "../../helpers/jwt";
 import insertQuery from "../../database/helpers/insertQuery";
 import setParams from "../../database/helpers/setParams";
 
-export default {
-  async auth(req, res) {
+export default class UserControllers {
+  static async auth(req, res) {
     try {
       const message = "Invalid Email/Password";
       const { email, password } = req.body;
@@ -19,15 +19,16 @@ export default {
       if (!ok) throw new Error(message);
       const payload = {};
       payload.id = user.id;
-      payload.role = user.isAdmin ? Admin : User;
+      payload.role = user.isadmin ? Admin : User;
       const token = await createToken(payload);
       delete user.password;
       return okResponse(res, { token, user });
     } catch (err) {
       return badRequest(res, err);
     }
-  },
-  async create(req, res) {
+  }
+
+  static async create(req, res) {
     try {
       req.body.password = await bcrypt.hashPassword(req.body.password);
       const { rows } = await db.query(
@@ -44,8 +45,9 @@ export default {
     } catch (error) {
       return badRequest(res, error);
     }
-  },
-  async getOne(req, res) {
+  }
+
+  static async getOne(req, res) {
     try {
       const { id } = req.params;
       const { rowCount, rows } = await db.query(Users.findById, [id]);
@@ -57,4 +59,4 @@ export default {
       return badRequest(res, error);
     }
   }
-};
+}
