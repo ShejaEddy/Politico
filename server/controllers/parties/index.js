@@ -21,7 +21,7 @@ export default {
     try {
       const { id } = req.params;
       const { rowCount, rows } = await db.query(Parties.findById, [id]);
-      if (!rowCount) return notFound(res, `party not found`);
+      if (!rowCount) return notFound(res, `Party not found`);
       return okResponse(res, rows[0]);
     } catch (error) {
       return badRequest(res, error);
@@ -51,7 +51,7 @@ export default {
     try {
       const { id } = req.params;
       const { rowCount } = await db.query(Parties.deleteOne, [id]);
-      if (!rowCount) return notFound(res, `party not found`);
+      if (!rowCount) return notFound(res, `Party not found`);
       return okResponse(res, undefined, 200, "Party deleted successfully");
     } catch (error) {
       return badRequest(res, error);
