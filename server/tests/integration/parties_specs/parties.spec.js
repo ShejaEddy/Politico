@@ -166,7 +166,7 @@ describe("party", () => {
           expect.arrayContaining(Object.keys(newparty))
         );
         expect(res.body.data.name).toEqual("another name");
-        expect(res.body.message).toMatch(/Office updated successfully/);
+        expect(res.body.message).toMatch(/Party updated successfully/);
         done();
       });
   });
@@ -180,7 +180,7 @@ describe("party", () => {
         expect(Object.keys(err.body)).toEqual(
           expect.arrayContaining(["status", "error"])
         );
-        expect(err.body.error.message).toMatch(/Office not found/);
+        expect(err.body.error.message).toMatch(/Party not found/);
         done();
       });
   });
@@ -210,7 +210,7 @@ describe("party", () => {
         expect(Object.keys(res.body)).toEqual(
           expect.arrayContaining(["status", "message"])
         );
-        expect(res.body.message).toMatch(/Office deleted successfully/);
+        expect(res.body.message).toMatch(/Party deleted successfully/);
         done();
       });
   });
@@ -223,7 +223,7 @@ describe("party", () => {
         expect(Object.keys(err.body)).toEqual(
           expect.arrayContaining(["status", "error"])
         );
-        expect(err.body.error.message).toMatch(/Office not found/);
+        expect(err.body.error.message).toMatch(/Party not found/);
         done();
       });
   });
