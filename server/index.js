@@ -25,7 +25,6 @@ app.use(
     stream: process.stderr
   })
 );
-
 app.use(
   morgan("dev", {
     skip: (_req, res) => res.statusCode >= 400,
