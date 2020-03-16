@@ -6,6 +6,7 @@ const newparty = {
   logoUrl: "https://logo.png",
   hqAddress: "Remera/Kigali"
 };
+const attributes = ["name", "logourl", "hqaddress"];
 let token;
 let partyId;
 describe("party", () => {
@@ -28,7 +29,7 @@ describe("party", () => {
           expect.arrayContaining(["status", "data"])
         );
         expect(Object.keys(res.body.data)).toEqual(
-          expect.arrayContaining(Object.keys(newparty))
+          expect.arrayContaining(attributes)
         );
         expect(res.body.message).toMatch(/Party created successfully/);
         partyId = res.body.data.id;
@@ -48,7 +49,7 @@ describe("party", () => {
         expect(Object.keys(err.body.error)).toEqual(
           expect.arrayContaining(["name"])
         );
-        expect(err.body.error.email).toEqual("name is already taken");
+        expect(err.body.error.name).toEqual("name is already taken");
         done();
       });
   });
@@ -86,7 +87,7 @@ describe("party", () => {
           expect.arrayContaining(["status", "data"])
         );
         expect(Object.keys(res.body.data)).toEqual(
-          expect.arrayContaining(["id", ...Object.keys(newparty)])
+          expect.arrayContaining(["id", ...attributes])
         );
         expect(res.body.message).toMatch(/Success/);
         done();
@@ -115,9 +116,7 @@ describe("party", () => {
         expect(Object.keys(err.body)).toEqual(
           expect.arrayContaining(["status", "error"])
         );
-        expect(err.body.error.message).toMatch(
-          /invalid input syntax/
-        );
+        expect(err.body.error.message).toMatch(/invalid input syntax/);
         done();
       });
   });
@@ -145,8 +144,8 @@ describe("party", () => {
         expect(Object.keys(res.body)).toEqual(
           expect.arrayContaining(["status", "data"])
         );
-        expect(Object.keys(res.body.data[0])).toEqual(
-          expect.arrayContaining(["id", ...Object.keys(newparty)])
+        expect(Object.keys(res.body.data.parties[0])).toEqual(
+          expect.arrayContaining(["id", ...attributes])
         );
         expect(res.body.message).toMatch(/Success/);
         done();
@@ -164,7 +163,7 @@ describe("party", () => {
           expect.arrayContaining(["status", "data"])
         );
         expect(Object.keys(res.body.data)).toEqual(
-          expect.arrayContaining(Object.keys(newparty))
+          expect.arrayContaining(attributes)
         );
         expect(res.body.data.name).toEqual("another name");
         expect(res.body.message).toMatch(/Party updated successfully/);
@@ -196,9 +195,7 @@ describe("party", () => {
         expect(Object.keys(err.body)).toEqual(
           expect.arrayContaining(["status", "error"])
         );
-        expect(err.body.error.message).toMatch(
-          /invalid input syntax/
-        );
+        expect(err.body.error.message).toMatch(/invalid input syntax/);
         done();
       });
   });
@@ -239,9 +236,7 @@ describe("party", () => {
         expect(Object.keys(err.body)).toEqual(
           expect.arrayContaining(["status", "error"])
         );
-        expect(err.body.error.message).toMatch(
-          /invalid input syntax/
-        );
+        expect(err.body.error.message).toMatch(/invalid input syntax/);
         done();
       });
   });
