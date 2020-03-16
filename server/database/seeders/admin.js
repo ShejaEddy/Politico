@@ -1,8 +1,4 @@
 const moment = require("moment");
-<<<<<<< HEAD
-=======
-const models = require("../models");
->>>>>>> feature(view-user-profile): user get profile  [Finishes #171742809]
 const bcrypt = require("../../helpers/bcrypt");
 
 const data = [
@@ -12,11 +8,7 @@ const data = [
   "admin@example.com",
   "0784141587",
   "1234567890987",
-<<<<<<< HEAD
   "https://avatar.png",
-=======
-  "hhts://avatar.png",
->>>>>>> feature(view-user-profile): user get profile  [Finishes #171742809]
   bcrypt.hashPassword("password"),
   true,
   moment(new Date()),
