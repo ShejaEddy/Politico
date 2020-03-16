@@ -31,8 +31,10 @@ export default class partiesControllers {
 
   static async getAll(_req, res) {
     try {
-      const { rows } = await db.query(Parties.findAll);
-      return okResponse(res, { parties: rows });
+      const { rows: parties, rowCount: totalParties } = await db.query(
+        Parties.findAll
+      );
+      return okResponse(res, { parties, totalParties });
     } catch (error) {
       return badRequest(res, error);
     }
@@ -41,10 +43,11 @@ export default class partiesControllers {
   static async update(req, res) {
     try {
       const { id } = req.params;
-      const { rows } = await db.query(updateQuery("party_tb", req.body), [
-        id,
-        ...setParams(req.body, true)
-      ]);
+      const { rows, rowCount } = await db.query(
+        updateQuery("party_tb", req.body),
+        [id, ...setParams(req.body, true)]
+      );
+      if (!rowCount) return notFound(res, "Party not found");
       return okResponse(res, rows[0], 200, "Party updated successfully");
     } catch (error) {
       return badRequest(res, error);
