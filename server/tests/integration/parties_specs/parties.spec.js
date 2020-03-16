@@ -12,10 +12,7 @@ describe("party", () => {
   beforeAll(() => {
     return request
       .post("/api/v1/auth")
-      .send({
-        email: "admin@example.com",
-        password: "password"
-      })
+      .send({ email: "admin@example.com", password: "password" })
       .then(res => {
         token = res.body.data.token;
       });
@@ -23,6 +20,7 @@ describe("party", () => {
   test("should be created successfully", done => {
     return request
       .post("/api/v1/parties")
+      .set("Autorization", `Bearer ${token}`)
       .send(newparty)
       .expect(201)
       .then(res => {
@@ -40,6 +38,7 @@ describe("party", () => {
   test("should not be created twice", done => {
     return request
       .post("/api/v1/parties")
+      .set("Autorization", `Bearer ${token}`)
       .send(newparty)
       .expect(400)
       .then(err => {
@@ -56,6 +55,7 @@ describe("party", () => {
   test("should be validated", done => {
     return request
       .post("/api/v1/parties")
+      .set("Autorization", `Bearer ${token}`)
       .send({})
       .expect(400)
       .then(err => {
@@ -116,7 +116,7 @@ describe("party", () => {
           expect.arrayContaining(["status", "error"])
         );
         expect(err.body.error.message).toMatch(
-          /invalid input syntax for type integer/
+          /invalid input syntax/
         );
         done();
       });
@@ -156,6 +156,7 @@ describe("party", () => {
   test("should be updated successfully", done => {
     return request
       .put(`/api/v1/parties/${partyId}`)
+      .set("Autorization", `Bearer ${token}`)
       .send({ name: "another name" })
       .expect(200)
       .then(res => {
@@ -196,7 +197,7 @@ describe("party", () => {
           expect.arrayContaining(["status", "error"])
         );
         expect(err.body.error.message).toMatch(
-          /invalid input syntax for type integer/
+          /invalid input syntax/
         );
         done();
       });
@@ -205,6 +206,7 @@ describe("party", () => {
   test("should be deleted successfully", done => {
     return request
       .delete(`/api/v1/parties/${partyId}`)
+      .set("Autorization", `Bearer ${token}`)
       .expect(200)
       .then(res => {
         expect(Object.keys(res.body)).toEqual(
@@ -238,7 +240,7 @@ describe("party", () => {
           expect.arrayContaining(["status", "error"])
         );
         expect(err.body.error.message).toMatch(
-          /invalid input syntax for type integer/
+          /invalid input syntax/
         );
         done();
       });
