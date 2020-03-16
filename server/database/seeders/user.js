@@ -5,12 +5,12 @@ const data = [
   "Sheja",
   "Eddy",
   "patron",
-  "admin@example.com",
-  "0784141587",
-  "1234567890987",
+  "user@example.com",
+  "0784141580",
+  "120000000000000000",
   "https://avatar.png",
   bcrypt.hashPassword("password"),
-  true,
+  false,
   moment(new Date()),
   moment(new Date())
 ];
