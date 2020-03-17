@@ -1,5 +1,5 @@
 import db from "../../database";
-import { Offices, Users } from "../../database/models";
+import { Offices, Users, Votes } from "../../database/models";
 import {
   badRequest,
   okResponse,
