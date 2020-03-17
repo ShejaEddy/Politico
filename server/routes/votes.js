@@ -6,13 +6,8 @@ import authorize from "../middleware/authorize";
 import { User } from "../helpers/roles";
 
 const votesRouters = Router();
-
-votesRouters.post(
-  "/votes",
-  authenticate,
-  authorize(User),
-  validate,
-  VoteControllers.create
-);
+votesRouters
+  .post("/votes", authenticate, validate, VoteControllers.create)
+  .get("/votes/:id", authenticate, VoteControllers.get);
 
 export default votesRouters;

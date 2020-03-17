@@ -33,8 +33,9 @@ export default class VotesControllers {
     } catch (error) {
       return badRequest(res, error);
     }
-  },
-  async get(req, res) {
+  }
+
+  static async get(req, res) {
     try {
       const { id } = req.params;
       const { rows, rowCount } = await db.query(Votes.results, [id]);
@@ -47,4 +48,4 @@ export default class VotesControllers {
       return badRequest(res, error);
     }
   }
-};
+}
