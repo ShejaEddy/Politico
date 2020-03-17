@@ -36,7 +36,13 @@ describe("User", () => {
   test("should create admin successfully", done => {
     return request
       .post("/api/v1/users")
-      .send({ ...newUser, isAdmin: true })
+      .send({
+        ...newUser,
+        email: "test@gmail.com",
+        phoneNumber: "0783456112",
+        nationalId: "12345618765",
+        isAdmin: true
+      })
       .expect(201)
       .then(res => {
         expect(Object.keys(res.body)).toEqual(
