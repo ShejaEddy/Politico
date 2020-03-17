@@ -6,8 +6,9 @@ module.exports = {
   collectCoverage: true,
   clearMocks: true,
   collectCoverageFrom: [
-    "server/**/*.{js,jsx}",
+    "server/**/*.js",
     "!**/coverage/**",
+    "!**/tests/**",
     "!**/migrations/**",
     "!**/seeders/**",
     "!**/node_modules/**",

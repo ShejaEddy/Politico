@@ -19,7 +19,6 @@ module.exports = (dir, name) => {
   return files.reduce((acc, file) => {
     // eslint-disable-next-line global-require
     const context = require(path.join(dir, file));
-
     acc[capitalize(file.replace(".js", ""))] = context;
     return acc;
   }, {});
