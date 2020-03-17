@@ -5,8 +5,8 @@ import updateQuery from "../../database/helpers/updateQuery";
 import insertQuery from "../../database/helpers/insertQuery";
 import setParams from "../../database/helpers/setParams";
 
-export default {
-  async create(req, res) {
+export default class partiesControllers {
+  static async create(req, res) {
     try {
       const { rows } = await db.query(
         insertQuery("party_tb", req.body),
@@ -16,8 +16,9 @@ export default {
     } catch (error) {
       return badRequest(res, error);
     }
-  },
-  async getOne(req, res) {
+  }
+
+  static async getOne(req, res) {
     try {
       const { id } = req.params;
       const { rowCount, rows } = await db.query(Parties.findById, [id]);
@@ -26,28 +27,34 @@ export default {
     } catch (error) {
       return badRequest(res, error);
     }
-  },
-  async getAll(_req, res) {
+  }
+
+  static async getAll(_req, res) {
     try {
-      const { rows } = await db.query(Parties.findAll);
-      return okResponse(res, { parties: rows });
+      const { rows: parties, rowCount: totalParties } = await db.query(
+        Parties.findAll
+      );
+      return okResponse(res, { parties, totalParties });
     } catch (error) {
       return badRequest(res, error);
     }
-  },
-  async update(req, res) {
+  }
+
+  static async update(req, res) {
     try {
       const { id } = req.params;
-      const { rows } = await db.query(updateQuery("party_tb", req.body), [
-        id,
-        ...setParams(req.body, true)
-      ]);
+      const { rows, rowCount } = await db.query(
+        updateQuery("party_tb", req.body),
+        [id, ...setParams(req.body, true)]
+      );
+      if (!rowCount) return notFound(res, "Party not found");
       return okResponse(res, rows[0], 200, "Party updated successfully");
     } catch (error) {
       return badRequest(res, error);
     }
-  },
-  async deleteOne(req, res) {
+  }
+
+  static async deleteOne(req, res) {
     try {
       const { id } = req.params;
       const { rowCount } = await db.query(Parties.deleteOne, [id]);
@@ -57,4 +64,4 @@ export default {
       return badRequest(res, error);
     }
   }
-};
+}

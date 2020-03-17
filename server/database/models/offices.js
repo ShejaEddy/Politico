@@ -8,10 +8,7 @@ const migrateUp = `CREATE TABLE IF NOT EXISTS
                       )`;
 
 const findAll = "SELECT * FROM office_tb";
-const findOne = "SELECT * FROM office_tb WHERE id = $1";
-const create = `INSERT INTO office_tb(type, name, created_at, updated_at)
-                      VALUES ($1, $2, $3, $4)
-                      RETURNING *`;
+const findById = "SELECT * FROM office_tb WHERE id = $1";
 const deleteOne = "DELETE FROM office_tb WHERE id = $1";
 
-module.exports = { migrateUp, findAll, findOne, create, deleteOne };
+module.exports = { migrateUp, findAll, findById, deleteOne };

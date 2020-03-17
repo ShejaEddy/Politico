@@ -6,12 +6,28 @@ import authorize from "../middleware/authorize";
 import { Admin } from "../helpers/roles";
 
 const officeRouters = Router();
-officeRouters.all("*", authenticate);
 officeRouters
-  .post("/parties", authorize(Admin), validate, OfficeControllers.create)
-  .get("/parties", OfficeControllers.getAll)
-  .get("/parties/:id", OfficeControllers.getOne)
-  .put("/parties/:id", authorize(Admin), validate, OfficeControllers.update)
-  .delete("/parties/:id", authorize(Admin), OfficeControllers.deleteOne);
+  .post(
+    "/offices",
+    authenticate,
+    authorize(Admin),
+    validate,
+    OfficeControllers.create
+  )
+  .get("/offices", authenticate, OfficeControllers.getAll)
+  .get("/offices/:id", authenticate, OfficeControllers.getOne)
+  .put(
+    "/offices/:id",
+    authenticate,
+    authorize(Admin),
+    validate,
+    OfficeControllers.update
+  )
+  .delete(
+    "/offices/:id",
+    authenticate,
+    authorize(Admin),
+    OfficeControllers.deleteOne
+  );
 
 export default officeRouters;

@@ -2,7 +2,6 @@ import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import morgan from "morgan";
-import logger from "./helpers/logger";
 import routes from "./routes";
 import { notFound } from "./helpers/response";
 
@@ -26,7 +25,6 @@ app.use(
     stream: process.stderr
   })
 );
-
 app.use(
   morgan("dev", {
     skip: (_req, res) => res.statusCode >= 400,
@@ -34,9 +32,6 @@ app.use(
   })
 );
 
-app.use((_req, res) => {
-  logger.error("404 page requested");
-  notFound(res, "This page does not exist!");
-});
+app.use((_req, res) => notFound(res, "This page does not exist!"));
 
 export default app;
