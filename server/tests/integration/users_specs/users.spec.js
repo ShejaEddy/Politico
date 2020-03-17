@@ -33,6 +33,22 @@ describe("User", () => {
         done();
       });
   });
+  test("should create admin successfully", done => {
+    return request
+      .post("/api/v1/users")
+      .send({ ...newUser, isAdmin: true })
+      .expect(201)
+      .then(res => {
+        expect(Object.keys(res.body)).toEqual(
+          expect.arrayContaining(["status", "data"])
+        );
+        expect(Object.keys(res.body.data)).toEqual(
+          expect.arrayContaining(["user", "token"])
+        );
+        expect(res.body.message).toMatch(/User created successfully/);
+        done();
+      });
+  });
   test("should not be created twice", done => {
     return request
       .post("/api/v1/users")
