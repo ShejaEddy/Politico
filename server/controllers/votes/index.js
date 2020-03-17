@@ -9,8 +9,8 @@ import {
 import insertQuery from "../../database/helpers/insertQuery";
 import setParams from "../../database/helpers/setParams";
 
-export default {
-  async create(req, res) {
+export default class VotesControllers {
+  static async create(req, res) {
     try {
       let rowCount;
       const { office, voter, candidate } = req.body;
@@ -34,4 +34,4 @@ export default {
       return badRequest(res, error);
     }
   }
-};
+}
