@@ -8,7 +8,7 @@ const migrateUp = `CREATE TABLE IF NOT EXISTS
                           updated_at TIMESTAMP,
                           PRIMARY KEY (office, voter)
                       )`;
-const results = `SELECT office,  candidate, CAST(COUNT(*)AS Int) AS result 
+const results = `SELECT office, candidate, CAST(COUNT(*)AS Int) AS result 
                       FROM vote_tb WHERE office = $1 GROUP BY candidate, office`;
 
 module.exports = { migrateUp, results };

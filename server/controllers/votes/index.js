@@ -1,5 +1,5 @@
 import db from "../../database";
-import { Offices, Users } from "../../database/models";
+import { Offices, Users, Votes } from "../../database/models";
 import {
   badRequest,
   okResponse,
@@ -30,6 +30,24 @@ export default class VotesControllers {
           "Vote can not be casted to the same office twice"
         );
       return okResponse(res, rows[0], 201, "Vote casted successfully");
+    } catch (error) {
+      return badRequest(res, error);
+    }
+  }
+
+  static async get(req, res) {
+    try {
+      const { id } = req.params;
+      const { rowCount: nberOfOffices } = await db.query(Offices.findById, [
+        id
+      ]);
+      if (!nberOfOffices) return notFound(res, "Office not found");
+      const { rows, rowCount } = await db.query(Votes.results, [id]);
+      if (!rowCount)
+        throw new Error(
+          `Unfortunately, no results are available at the moment`
+        );
+      return okResponse(res, rows[0]);
     } catch (error) {
       return badRequest(res, error);
     }
