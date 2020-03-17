@@ -184,5 +184,39 @@ describe("Votes Controllers", () => {
           done();
         });
     });
+
+    test("should return badRequest for not ready results", async done => {
+      let officeId;
+      let adminToken;
+      await request
+        .post("/api/v1/auth")
+        .send({ email: "admin@example.com", password: "password" })
+        .then(res => {
+          adminToken = res.body.data.token;
+        });
+      await request
+        .post("/api/v1/offices")
+        .set("Authorization", `Bearer ${adminToken}`)
+        .send({
+          name: "Test Office",
+          type: "Legislative"
+        })
+        .then(res => {
+          officeId = res.body.data.id;
+        });
+      await request
+        .get(`/api/v1/votes/${officeId}`)
+        .set("Authorization", `Bearer ${token}`)
+        .expect(400)
+        .then(err => {
+          expect(Object.keys(err.body)).toEqual(
+            expect.arrayContaining(["status", "error"])
+          );
+          expect(err.body.error.message).toMatch(
+            /Unfortunately, no results are available at the moment/
+          );
+          done();
+        });
+    });
   });
 });
