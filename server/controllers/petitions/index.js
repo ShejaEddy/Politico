@@ -62,8 +62,8 @@ export default class PetitionsControllers {
         user: { id: createdBy }
       } = req;
       const { rows, rowCount } = await db.query(
-        updateQuery("petition_tb", req.body),
-        [id, ...setParams(req.body, true, createdBy)]
+        updateQuery("petition_tb", req.body, "createdBy"),
+        [id, createdBy, ...setParams(req.body, true)]
       );
       if (!rowCount) return notFound(res, "Petition not found");
       return okResponse(res, rows[0], 200, "Petition updated successfully");
