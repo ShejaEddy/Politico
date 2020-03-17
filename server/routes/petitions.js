@@ -11,6 +11,8 @@ petitionRouters
   .post("/petitions", validate, PetitionControllers.create)
   .get("/petitions", authorize(Admin), PetitionControllers.getAll)
   .get("/petitions/:id", PetitionControllers.getOne)
-  .get("/petitions/users/:id", PetitionControllers.getUserPetitions);
+  .get("/petitions/users/:id", PetitionControllers.getUserPetitions)
+  .put("/petitions/:id", PetitionControllers.update)
+  .delete("/petitions/:id", PetitionControllers.deleteOne);
 
 export default petitionRouters;
