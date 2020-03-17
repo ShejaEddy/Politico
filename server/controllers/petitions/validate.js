@@ -8,11 +8,6 @@ const allSchemas = {
       .positive()
       .min(1)
       .required(),
-    createdBy: Joi.number()
-      .integer()
-      .positive()
-      .min(1)
-      .required(),
     body: Joi.string().required(),
     evidence: Joi.array()
       .min(1)

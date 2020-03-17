@@ -3,7 +3,6 @@ import request from "../../helpers/request";
 
 const newpetition = {
   office: 1,
-  createdBy: 2,
   body: "Please help me",
   evidence: ["https://secrets.com"]
 };
@@ -34,7 +33,7 @@ describe("Petition Controllers", () => {
     test("should be created successfully", done => {
       return request
         .post("/api/v1/petitions")
-        .set("Authorization", `Bearer ${adminToken}`)
+        .set("Authorization", `Bearer ${userToken}`)
         .send(newpetition)
         .expect(201)
         .then(res => {
@@ -52,7 +51,7 @@ describe("Petition Controllers", () => {
     test("should not be created twice", done => {
       return request
         .post("/api/v1/petitions")
-        .set("Authorization", `Bearer ${adminToken}`)
+        .set("Authorization", `Bearer ${userToken}`)
         .send(newpetition)
         .expect(400)
         .then(err => {
@@ -60,10 +59,10 @@ describe("Petition Controllers", () => {
             expect.arrayContaining(["status", "error"])
           );
           expect(Object.keys(err.body.error)).toEqual(
-            expect.arrayContaining(["createdBy, office"])
+            expect.arrayContaining(["createdby, office"])
           );
-          expect(err.body.error["createdBy, office"]).toEqual(
-            "createdBy, office is already taken"
+          expect(err.body.error["createdby, office"]).toEqual(
+            "createdby, office is already taken"
           );
           done();
         });
@@ -72,7 +71,7 @@ describe("Petition Controllers", () => {
     test("should be validated", done => {
       return request
         .post("/api/v1/petitions")
-        .set("Authorization", `Bearer ${adminToken}`)
+        .set("Authorization", `Bearer ${userToken}`)
         .send({})
         .expect(400)
         .then(err => {
@@ -85,7 +84,6 @@ describe("Petition Controllers", () => {
           expect(err.body.message).toMatch(/Validation error/);
           expect(err.body.error).toEqual(
             expect.objectContaining({
-              createdBy: "name is required",
               body: "body is required",
               evidence: "evidence is required"
             })
@@ -169,11 +167,25 @@ describe("Petition Controllers", () => {
           done();
         });
     });
-
+    test("should return unauthorized", done => {
+      return request
+        .get(`/api/v1/petitions`)
+        .set("Authorization", `Bearer ${userToken}`)
+        .expect(401)
+        .then(err => {
+          expect(Object.keys(err.body)).toEqual(
+            expect.arrayContaining(["status", "error"])
+          );
+          expect(err.body.error.message).toMatch(
+            /Unauthorized to perform this action/
+          );
+          done();
+        });
+    });
     test("should return all user petitions successfully", done => {
       return request
-        .get(`/api/v1/petitions/users/2`)
-        .set("Authorization", `Bearer ${adminToken}`)
+        .get(`/api/v1/petitions/current`)
+        .set("Authorization", `Bearer ${userToken}`)
         .expect(200)
         .then(res => {
           expect(Object.keys(res.body)).toEqual(
@@ -186,41 +198,13 @@ describe("Petition Controllers", () => {
           done();
         });
     });
-
-    test("should not be found", done => {
-      return request
-        .get(`/api/v1/petitions/users/12345`)
-        .set("Authorization", `Bearer ${adminToken}`)
-        .expect(404)
-        .then(err => {
-          expect(Object.keys(err.body)).toEqual(
-            expect.arrayContaining(["status", "error"])
-          );
-          expect(err.body.error.message).toMatch(/User not found/);
-          done();
-        });
-    });
-
-    test("should return badRequest for not integers id", done => {
-      return request
-        .get(`/api/v1/petitions/users/notinteger`)
-        .set("Authorization", `Bearer ${adminToken}`)
-        .expect(400)
-        .then(err => {
-          expect(Object.keys(err.body)).toEqual(
-            expect.arrayContaining(["status", "error"])
-          );
-          expect(err.body.error.message).toMatch(/invalid input syntax/);
-          done();
-        });
-    });
   });
 
   describe("Update petition", () => {
     test("should be updated successfully", done => {
       return request
         .put(`/api/v1/petitions/${petitionId}`)
-        .set("Authorization", `Bearer ${adminToken}`)
+        .set("Authorization", `Bearer ${userToken}`)
         .send({ body: "another matter" })
         .expect(200)
         .then(res => {
@@ -230,7 +214,7 @@ describe("Petition Controllers", () => {
           expect(Object.keys(res.body.data)).toEqual(
             expect.arrayContaining(attributes)
           );
-          expect(res.body.data.name).toEqual("another name");
+          expect(res.body.data.body).toEqual("another matter");
           expect(res.body.message).toMatch(/Petition updated successfully/);
           done();
         });
@@ -238,8 +222,8 @@ describe("Petition Controllers", () => {
     test("should not be found", done => {
       return request
         .put(`/api/v1/petitions/12345`)
-        .set("Authorization", `Bearer ${adminToken}`)
-        .send({ name: "another name" })
+        .set("Authorization", `Bearer ${userToken}`)
+        .send({ body: "another body" })
         .expect(404)
         .then(err => {
           expect(Object.keys(err.body)).toEqual(
@@ -253,8 +237,8 @@ describe("Petition Controllers", () => {
     test("should return badRequest for not integers id", done => {
       return request
         .put(`/api/v1/petitions/notinteger`)
-        .set("Authorization", `Bearer ${adminToken}`)
-        .send({ name: "another name" })
+        .set("Authorization", `Bearer ${userToken}`)
+        .send({ body: "another body" })
         .expect(400)
         .then(err => {
           expect(Object.keys(err.body)).toEqual(
@@ -269,7 +253,7 @@ describe("Petition Controllers", () => {
     test("should be deleted successfully", done => {
       return request
         .delete(`/api/v1/petitions/${petitionId}`)
-        .set("Authorization", `Bearer ${adminToken}`)
+        .set("Authorization", `Bearer ${userToken}`)
         .expect(200)
         .then(res => {
           expect(Object.keys(res.body)).toEqual(
@@ -282,7 +266,7 @@ describe("Petition Controllers", () => {
     test("should not be found", done => {
       return request
         .delete(`/api/v1/petitions/12345`)
-        .set("Authorization", `Bearer ${adminToken}`)
+        .set("Authorization", `Bearer ${userToken}`)
         .expect(404)
         .then(err => {
           expect(Object.keys(err.body)).toEqual(
@@ -296,7 +280,7 @@ describe("Petition Controllers", () => {
     test("should return badRequest for not integers id", done => {
       return request
         .delete(`/api/v1/petitions/notinteger`)
-        .set("Authorization", `Bearer ${adminToken}`)
+        .set("Authorization", `Bearer ${userToken}`)
         .expect(400)
         .then(err => {
           expect(Object.keys(err.body)).toEqual(

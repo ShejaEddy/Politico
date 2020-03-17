@@ -1,5 +1,4 @@
 import jwt from "jsonwebtoken";
-import { isEmpty } from "lodash";
 import db from "../database";
 import { Users } from "../database/models";
 import { notAuthorized, badRequest, notFound } from "../helpers/response";
@@ -17,9 +16,9 @@ export default async (req, res, next) => {
           id,
           role: { type }
         } = payload;
-        const user = await db.query(Users.findById, [id]);
-        if (isEmpty(user)) return notFound(res, "User account not found");
-        req.user = user;
+        const { rows, rowCount } = await db.query(Users.findById, [id]);
+        if (!rowCount) return notFound(res, "User account not found");
+        [req.user] = rows;
         req.user.role = { type };
         return next();
       });
