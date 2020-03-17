@@ -38,6 +38,10 @@ export default class VotesControllers {
   static async get(req, res) {
     try {
       const { id } = req.params;
+      const { rowCount: nberOfOffices } = await db.query(Offices.findById, [
+        id
+      ]);
+      if (!nberOfOffices) return notFound(res, "Office not found");
       const { rows, rowCount } = await db.query(Votes.results, [id]);
       if (!rowCount)
         throw new Error(

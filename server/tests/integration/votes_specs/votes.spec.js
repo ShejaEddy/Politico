@@ -156,5 +156,33 @@ describe("Votes Controllers", () => {
           done();
         });
     });
+
+    test("should not find office", done => {
+      return request
+        .get(`/api/v1/votes/12345`)
+        .set("Authorization", `Bearer ${token}`)
+        .send({ ...newVote, office: 1234 })
+        .expect(404)
+        .then(err => {
+          expect(Object.keys(err.body)).toEqual(
+            expect.arrayContaining(["status", "error"])
+          );
+          expect(err.body.error.message).toMatch(/Office not found/);
+          done();
+        });
+    });
+    test("should return badRequest for not integers id", done => {
+      return request
+        .get(`/api/v1/votes/notinteger`)
+        .set("Authorization", `Bearer ${token}`)
+        .expect(400)
+        .then(err => {
+          expect(Object.keys(err.body)).toEqual(
+            expect.arrayContaining(["status", "error"])
+          );
+          expect(err.body.error.message).toMatch(/invalid input syntax/);
+          done();
+        });
+    });
   });
 });
