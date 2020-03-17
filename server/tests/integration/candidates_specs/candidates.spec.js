@@ -7,7 +7,7 @@ const newCandidate = {
   party: 1
 };
 let token;
-describe("party", () => {
+describe("Candidate controllers", () => {
   beforeAll(() => {
     return request
       .post("/api/v1/auth")
@@ -22,6 +22,7 @@ describe("party", () => {
   test("should be created successfully", done => {
     return request
       .post("/api/v1/offices/candidates")
+      .set("Authorization", `Bearer ${token}`)
       .send(newCandidate)
       .expect(201)
       .then(res => {
@@ -38,6 +39,7 @@ describe("party", () => {
   test("should not be created twice", done => {
     return request
       .post("/api/v1/offices/candidates")
+      .set("Authorization", `Bearer ${token}`)
       .send(newCandidate)
       .expect(400)
       .then(err => {
@@ -45,15 +47,18 @@ describe("party", () => {
           expect.arrayContaining(["status", "error"])
         );
         expect(Object.keys(err.body.error)).toEqual(
-          expect.arrayContaining(["candidate"])
+          expect.arrayContaining(["candidate, office"])
         );
-        expect(err.body.error.email).toEqual("candidate is already taken");
+        expect(err.body.error["candidate, office"]).toEqual(
+          "candidate, office is already taken"
+        );
         done();
       });
   });
   test("should be validated", done => {
     return request
       .post("/api/v1/offices/candidates")
+      .set("Authorization", `Bearer ${token}`)
       .send({})
       .expect(400)
       .then(err => {
@@ -66,9 +71,9 @@ describe("party", () => {
         expect(err.body.message).toMatch(/Validation error/);
         expect(err.body.error).toEqual(
           expect.objectContaining({
-            name: "name is required",
-            hqAddress: "hqAddress is required",
-            logoUrl: "logoUrl is required"
+            candidate: "candidate is required",
+            office: "office is required",
+            party: "party is required"
           })
         );
         done();
@@ -113,22 +118,6 @@ describe("party", () => {
           expect.arrayContaining(["status", "error"])
         );
         expect(err.body.error.message).toMatch(/User not found/);
-        done();
-      });
-  });
-  test("should return badRequest for not integers id", done => {
-    return request
-      .post(`/api/v1/offices/candidates`)
-      .set("Authorization", `Bearer ${token}`)
-      .send({ ...newCandidate, candidate: "notinteger" })
-      .expect(400)
-      .then(err => {
-        expect(Object.keys(err.body)).toEqual(
-          expect.arrayContaining(["status", "error"])
-        );
-        expect(err.body.error.message).toMatch(
-          /invalid input syntax for type integer/
-        );
         done();
       });
   });

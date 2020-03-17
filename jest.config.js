@@ -8,6 +8,7 @@ module.exports = {
   collectCoverageFrom: [
     "server/**/*.{js,jsx}",
     "!**/coverage/**",
+    "!**/tests/**",
     "!**/migrations/**",
     "!**/seeders/**",
     "!**/node_modules/**",
