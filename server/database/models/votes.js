@@ -5,6 +5,7 @@ const migrateUp = `CREATE TABLE IF NOT EXISTS
                           office INTEGER NOT NULL,
                           candidate INTEGER NOT NULL,
                           created_at TIMESTAMP,
+                          updated_at TIMESTAMP,
                           PRIMARY KEY (office, voter)
                       )`;
 const results = `SELECT office,  candidate, CAST(COUNT(*)AS Int) AS result 

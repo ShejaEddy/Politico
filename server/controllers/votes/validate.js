@@ -8,7 +8,7 @@ const allSchemas = {
       .positive()
       .min(1)
       .required(),
-    party: Joi.number()
+    candidate: Joi.number()
       .integer()
       .positive()
       .min(1)
