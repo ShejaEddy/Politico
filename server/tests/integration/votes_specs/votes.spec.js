@@ -150,7 +150,7 @@ describe("Votes Controllers", () => {
             expect.arrayContaining(["status", "data"])
           );
           expect(Object.keys(res.body.data)).toEqual(
-            expect.arrayContaining(["id", "result", "candidate", "office"])
+            expect.arrayContaining(["result", "candidate", "office"])
           );
           expect(res.body.message).toMatch(/Success/);
           done();
