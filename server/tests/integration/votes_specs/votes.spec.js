@@ -1,18 +1,19 @@
 import "@babel/polyfill";
 import request from "../../helpers/request";
 
-const newCandidate = {
-  candidate: 2,
+const newVote = {
+  candidate: 1,
   office: 1,
-  party: 1
+  voter: 1
 };
 let token;
-describe("Candidate controllers", () => {
+
+describe("Votes", () => {
   beforeAll(() => {
     return request
       .post("/api/v1/auth")
       .send({
-        email: "admin@example.com",
+        email: "user@example.com",
         password: "password"
       })
       .then(res => {
@@ -21,43 +22,43 @@ describe("Candidate controllers", () => {
   });
   test("should be created successfully", done => {
     return request
-      .post("/api/v1/offices/candidates")
+      .post("/api/v1/votes")
       .set("Authorization", `Bearer ${token}`)
-      .send(newCandidate)
+      .send(newVote)
       .expect(201)
       .then(res => {
         expect(Object.keys(res.body)).toEqual(
           expect.arrayContaining(["status", "data"])
         );
         expect(Object.keys(res.body.data)).toEqual(
-          expect.arrayContaining(Object.keys(newCandidate))
+          expect.arrayContaining(Object.keys(newVote))
         );
-        expect(res.body.message).toMatch(/Candidate created successfully/);
+        expect(res.body.message).toMatch(/Vote casted successfully/);
         done();
       });
   });
   test("should not be created twice", done => {
     return request
-      .post("/api/v1/offices/candidates")
+      .post("/api/v1/votes")
       .set("Authorization", `Bearer ${token}`)
-      .send(newCandidate)
+      .send(newVote)
       .expect(400)
       .then(err => {
         expect(Object.keys(err.body)).toEqual(
           expect.arrayContaining(["status", "error"])
         );
         expect(Object.keys(err.body.error)).toEqual(
-          expect.arrayContaining(["candidate, office"])
+          expect.arrayContaining(["office, voter"])
         );
-        expect(err.body.error["candidate, office"]).toEqual(
-          "candidate, office is already taken"
+        expect(err.body.error["office, voter"]).toEqual(
+          "office, voter is already taken"
         );
         done();
       });
   });
   test("should be validated", done => {
     return request
-      .post("/api/v1/offices/candidates")
+      .post("/api/v1/votes")
       .set("Authorization", `Bearer ${token}`)
       .send({})
       .expect(400)
@@ -66,14 +67,14 @@ describe("Candidate controllers", () => {
           expect.arrayContaining(["status", "error", "message"])
         );
         expect(Object.keys(err.body.error)).toEqual(
-          expect.arrayContaining(["candidate", "office", "party"])
+          expect.arrayContaining(["candidate", "office", "voter"])
         );
         expect(err.body.message).toMatch(/Validation error/);
         expect(err.body.error).toEqual(
           expect.objectContaining({
             candidate: "candidate is required",
             office: "office is required",
-            party: "party is required"
+            voter: "voter is required"
           })
         );
         done();
@@ -81,9 +82,9 @@ describe("Candidate controllers", () => {
   });
   test("should not find office", done => {
     return request
-      .post(`/api/v1/offices/candidates`)
+      .post(`/api/v1/votes`)
       .set("Authorization", `Bearer ${token}`)
-      .send({ ...newCandidate, office: 1234 })
+      .send({ ...newVote, office: 1234 })
       .expect(404)
       .then(err => {
         expect(Object.keys(err.body)).toEqual(
@@ -93,38 +94,38 @@ describe("Candidate controllers", () => {
         done();
       });
   });
-  test("should not find party", done => {
+  test("should not find voter", done => {
     return request
-      .post(`/api/v1/offices/candidates`)
+      .post(`/api/v1/votes`)
       .set("Authorization", `Bearer ${token}`)
-      .send({ ...newCandidate, party: 1234 })
+      .send({ ...newVote, voter: 1234 })
       .expect(404)
       .then(err => {
         expect(Object.keys(err.body)).toEqual(
           expect.arrayContaining(["status", "error"])
         );
-        expect(err.body.error.message).toMatch(/Party not found/);
+        expect(err.body.error.message).toMatch(/Voter not found/);
         done();
       });
   });
-  test("should not find user", done => {
+  test("should not find candidate", done => {
     return request
-      .post(`/api/v1/offices/candidates`)
+      .post(`/api/v1/votes`)
       .set("Authorization", `Bearer ${token}`)
-      .send({ ...newCandidate, candidate: 1234 })
+      .send({ ...newVote, candidate: 1234 })
       .expect(404)
       .then(err => {
         expect(Object.keys(err.body)).toEqual(
           expect.arrayContaining(["status", "error"])
         );
-        expect(err.body.error.message).toMatch(/User not found/);
+        expect(err.body.error.message).toMatch(/Candidate not found/);
         done();
       });
   });
 
   test("should return unauthorized", done => {
     return request
-      .post(`/api/v1/offices/candidates`)
+      .post(`/api/v1/votes`)
       .expect(401)
       .then(err => {
         expect(Object.keys(err.body)).toEqual(
