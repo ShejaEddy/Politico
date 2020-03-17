@@ -2,7 +2,7 @@ import "@babel/polyfill";
 import request from "../../helpers/request";
 
 const newCandidate = {
-  candidate: 1,
+  candidate: 2,
   office: 1,
   party: 1
 };

@@ -2,10 +2,6 @@ import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import morgan from "morgan";
-<<<<<<< HEAD
-=======
-import logger from "./helpers/logger";
->>>>>>> feature(user-cast-vote): user vote for a candidate [Finishes #171742697]
 import routes from "./routes";
 import { notFound } from "./helpers/response";
 
