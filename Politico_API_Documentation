@@ -1,0 +1,1014 @@
+{
+	"info": {
+		"_postman_id": "f48d36c1-a434-4389-b7bd-eed7a31011a9",
+		"name": "Politico",
+		"description": "Politico Web Application enables citizens to give their mandate to politicians running for different government offices while building trust in the process through transparency ",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "party",
+			"item": [
+				{
+					"name": "Get all parties",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "85dc9746-51a0-41df-bc68-16216f02b94c",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/parties",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"parties"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a party",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "85dc9746-51a0-41df-bc68-16216f02b94c",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/parties/{{party_id}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"parties",
+								"{{party_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a party",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "85dc9746-51a0-41df-bc68-16216f02b94c",
+								"exec": [
+									"const res = pm.response.json();",
+									"pm.environment.set(\"party_id\", res.data.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"FPR Inkotanyi\",\n\t\"hqAddress\": \"London\",\n\t\"logoUrl\": \"https://logo.png\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/parties",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"parties"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a party",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "85dc9746-51a0-41df-bc68-16216f02b94c",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"FPR Inkotanyi\",\n\t\"hqAddress\": \"London\",\n\t\"logoUrl\": \"https://logo.png\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/parties/{{party_id}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"parties",
+								"{{party_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a party",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "85dc9746-51a0-41df-bc68-16216f02b94c",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Green Party\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/parties/{{party_id}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"parties",
+								"{{party_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "office",
+			"item": [
+				{
+					"name": "Create an office",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "85dc9746-51a0-41df-bc68-16216f02b94c",
+								"exec": [
+									"const res = pm.response.json();",
+									"pm.environment.set(\"office_id\", res.data.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Army Rangers\",\n\t\"type\": \"Official\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/offices",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"offices"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get an office",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "85dc9746-51a0-41df-bc68-16216f02b94c",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/offices/{{office_id}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"offices",
+								"{{office_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update an office",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "85dc9746-51a0-41df-bc68-16216f02b94c",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Prime minister\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/offices/{{office_id}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"offices",
+								"{{office_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all offices",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "85dc9746-51a0-41df-bc68-16216f02b94c",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/offices",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"offices"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete an office",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "85dc9746-51a0-41df-bc68-16216f02b94c",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"FPR Inkotanyi\",\n\t\"hqAddress\": \"London\",\n\t\"logoUrl\": \"https://logo.png\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/offices/{{office_id}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"offices",
+								"{{office_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "Login as Admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3b41ca4e-0e0d-40f5-9548-58aad5f58154",
+								"exec": [
+									"const res = pm.response.json();",
+									"pm.environment.set(\"token\", res.data.token)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"admin@example.com\",\n\t\"password\": \"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth"
+							]
+						},
+						"description": "Admin should enter email=admin@example.com && password=password to be successfully authenticated\notherwise should get bad request"
+					},
+					"response": []
+				},
+				{
+					"name": "User - create account",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "85dc9746-51a0-41df-bc68-16216f02b94c",
+								"exec": [
+									"const res = pm.response.json();",
+									"pm.environment.set(\"token\", res.data.token);",
+									"pm.environment.set(\"user_id\", res.data.user.id);",
+									"pm.environment.set(\"user_email\", res.data.user.email);",
+									"pm.environment.set(\"user_password\", res.data.user.password);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"politician@example.com\",\n\t\"password\": \"password\",\n\t\"firstname\": \"Sheja\",\n\t\"lastname\": \"Eddy\",\n\t\"othername\": \"Mc\",\n\t\"phoneNumber\": \"25078656655\",\n\t\"nationalId\": \"7098765432\",\n\t\"isAdmin\": \"false\",\n\t\"passportUrl\": \"https://avatar.png\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/users",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login as User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3b41ca4e-0e0d-40f5-9548-58aad5f58154",
+								"exec": [
+									"const res = pm.response.json();",
+									"pm.environment.set(\"token\", res.data.token)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"{{user_email}}\",\n\t\"password\": \"{{user_password}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "candidates",
+			"item": [
+				{
+					"name": "Create a candidate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fde6f0d8-903a-41e0-bea4-deed470b1ee5",
+								"exec": [
+									"const res = pm.response.json();",
+									"pm.environment.set(\"candidate_id\", res.data.id)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"office\": 1,\n\t\"candidate\": 2,\n\t\"party\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/candidates",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"candidates"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all candidates",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/candidates",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"candidates"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "votes",
+			"item": [
+				{
+					"name": "Cast a vote",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"office\": \"{{office_id}}\",\n\t\"candidate\": \"{{candidate_id}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/votes",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"votes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Vote decision",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/votes/2",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"votes",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All Votes decision",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/votes",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"votes"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "petitions",
+			"item": [
+				{
+					"name": "Update a petition",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "73127491-d35a-4fb8-a422-e7029a75b7c9",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"body\": \"Im soo sorry for my claims\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/petitions/{{petition_id}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"petitions",
+								"{{petition_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "File a petition",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "63f696ad-41f1-457b-bedd-f2a4d504a7c2",
+								"exec": [
+									"const res = pm.response.json();",
+									"pm.environment.set(\"petition_id\", res.data.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"office\": \"{{office_id}}\",\n\t\"body\": \"you are all thieves\",\n\t\"evidence\": [\"https://secrets.mp4\", \"https://thieves.jpg\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/petitions",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"petitions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a petition",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "73127491-d35a-4fb8-a422-e7029a75b7c9",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/petitions/{{petition_id}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"petitions",
+								"{{petition_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all my petitions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "73127491-d35a-4fb8-a422-e7029a75b7c9",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/petitions/current",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"petitions",
+								"current"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin - Get all petitions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "73127491-d35a-4fb8-a422-e7029a75b7c9",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/petitions",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"petitions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a petition",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "73127491-d35a-4fb8-a422-e7029a75b7c9",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/petitions/{{petition_id}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"petitions",
+								"{{petition_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"protocolProfileBehavior": {}
+}

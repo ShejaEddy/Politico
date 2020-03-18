@@ -1,13 +1,12 @@
 const migrateUp = `CREATE TABLE IF NOT EXISTS 
                       petition_tb (
-                          id SERIAL NOT NULL,
+                          id SERIAL NOT NULL PRIMARY KEY,
                           createdBy INTEGER NOT NULL,
                           office INTEGER NOT NULL,
                           body VARCHAR(511) NOT NULL,
                           evidence TEXT [] NOT NULL,
                           created_at TIMESTAMP,
-                          updated_at TIMESTAMP,
-                          PRIMARY KEY (createdBy, office)
+                          updated_at TIMESTAMP
                       )`;
 const findAll = "SELECT * FROM petition_tb";
 const findById = "SELECT * FROM petition_tb WHERE id = $1";

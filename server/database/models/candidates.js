@@ -9,4 +9,7 @@ const migrateUp = ` CREATE TABLE IF NOT EXISTS
                           PRIMARY KEY (candidate, office)
                       )`;
 
-module.exports = { migrateUp };
+const findAll = "SELECT * FROM candidate_tb";
+const findOne =
+  "SELECT * FROM candidate_tb WHERE candidate = $1 AND office = $2";
+module.exports = { migrateUp, findAll, findOne };

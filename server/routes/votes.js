@@ -6,6 +6,7 @@ import authenticate from "../middleware/authenticate";
 const votesRouters = Router();
 votesRouters
   .post("/votes", authenticate, validate, VoteControllers.create)
+  .get("/votes", authenticate, VoteControllers.getAll)
   .get("/votes/:id", authenticate, VoteControllers.get);
 
 export default votesRouters;

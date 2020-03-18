@@ -48,25 +48,6 @@ describe("Petition Controllers", () => {
           done();
         });
     });
-    test("should not be created twice", done => {
-      return request
-        .post("/api/v1/petitions")
-        .set("Authorization", `Bearer ${userToken}`)
-        .send(newpetition)
-        .expect(400)
-        .then(err => {
-          expect(Object.keys(err.body)).toEqual(
-            expect.arrayContaining(["status", "error"])
-          );
-          expect(Object.keys(err.body.error)).toEqual(
-            expect.arrayContaining(["createdby, office"])
-          );
-          expect(err.body.error["createdby, office"]).toEqual(
-            "createdby, office is already taken"
-          );
-          done();
-        });
-    });
 
     test("should be validated", done => {
       return request
