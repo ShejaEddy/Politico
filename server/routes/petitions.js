@@ -26,6 +26,7 @@ petitionRouters
     "/petitions/:id",
     authenticate,
     authorize(User),
+    validate,
     PetitionControllers.update
   )
   .delete(

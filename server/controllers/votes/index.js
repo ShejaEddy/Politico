@@ -1,37 +1,29 @@
 import db from "../../database";
-import { Offices, Users, Votes } from "../../database/models";
-import {
-  badRequest,
-  okResponse,
-  notFound,
-  notAuthorized
-} from "../../helpers/response";
+import { Offices, Votes, Candidates } from "../../database/models";
+import { badRequest, okResponse, notFound } from "../../helpers/response";
 import insertQuery from "../../database/helpers/insertQuery";
 import setParams from "../../database/helpers/setParams";
 
 export default class VotesControllers {
   static async create(req, res) {
     try {
-      let rowCount;
-      const { office, voter, candidate } = req.body;
-      ({ rowCount } = await db.query(Users.findById, [voter]));
-      if (!rowCount) return notFound(res, "Voter not found");
-      ({ rowCount } = await db.query(Offices.findById, [office]));
-      if (!rowCount) return notFound(res, "Office not found");
-      ({ rowCount } = await db.query(Users.findById, [candidate]));
+      const { office, candidate } = req.body;
+      const { rowCount } = await db.query(Candidates.findOne, [
+        candidate,
+        office
+      ]);
       if (!rowCount) return notFound(res, "Candidate not found");
-      const { rows, rowCount: created } = await db.query(
+      req.body.voter = req.user.id;
+      const { rows } = await db.query(
         insertQuery("vote_tb", req.body),
         setParams(req.body)
       );
-      if (!created)
-        return notAuthorized(
-          res,
-          "Vote can not be casted to the same office twice"
-        );
       return okResponse(res, rows[0], 201, "Vote casted successfully");
     } catch (error) {
-      return badRequest(res, error);
+      let message;
+      if (error.code === "23505")
+        message = "Vote can not be casted to the same office twice";
+      return badRequest(res, error, message);
     }
   }
 
@@ -48,6 +40,17 @@ export default class VotesControllers {
           `Unfortunately, no results are available at the moment`
         );
       return okResponse(res, rows[0]);
+    } catch (error) {
+      return badRequest(res, error);
+    }
+  }
+
+  static async getAll(_, res) {
+    try {
+      const { rows: results, rowCount: totalResults } = await db.query(
+        Votes.allResults
+      );
+      return okResponse(res, { results, totalResults });
     } catch (error) {
       return badRequest(res, error);
     }

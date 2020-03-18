@@ -48,22 +48,18 @@ describe("Petition Controllers", () => {
           done();
         });
     });
-    test("should not be created twice", done => {
+
+    test("should not be created and throw baqRequest", done => {
       return request
         .post("/api/v1/petitions")
         .set("Authorization", `Bearer ${userToken}`)
-        .send(newpetition)
+        .send({ ...newpetition, evidence: "badRequest"})
         .expect(400)
-        .then(err => {
-          expect(Object.keys(err.body)).toEqual(
+        .then(res => {
+          expect(Object.keys(res.body)).toEqual(
             expect.arrayContaining(["status", "error"])
           );
-          expect(Object.keys(err.body.error)).toEqual(
-            expect.arrayContaining(["createdby, office"])
-          );
-          expect(err.body.error["createdby, office"]).toEqual(
-            "createdby, office is already taken"
-          );
+          expect(res.body.error.evidence).toMatch(/evidence must be an array/);
           done();
         });
     });

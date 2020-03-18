@@ -7,12 +7,14 @@ import { Admin } from "../helpers/roles";
 
 const candidatesRouters = Router();
 
-candidatesRouters.post(
-  "/offices/candidates",
-  authenticate,
-  authorize(Admin),
-  validate,
-  CandidateControllers.create
-);
+candidatesRouters
+  .post(
+    "/candidates",
+    authenticate,
+    authorize(Admin),
+    validate,
+    CandidateControllers.create
+  )
+  .get("/candidates", authenticate, CandidateControllers.getAll);
 
 export default candidatesRouters;

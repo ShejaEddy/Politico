@@ -11,4 +11,7 @@ const migrateUp = `CREATE TABLE IF NOT EXISTS
 const results = `SELECT office, candidate, CAST(COUNT(*)AS Int) AS result 
                       FROM vote_tb WHERE office = $1 GROUP BY candidate, office`;
 
-module.exports = { migrateUp, results };
+const allResults = `SELECT office, candidate, CAST(COUNT(*)AS Int) AS result 
+                      FROM vote_tb GROUP BY candidate, office`;
+
+module.exports = { migrateUp, results, allResults };

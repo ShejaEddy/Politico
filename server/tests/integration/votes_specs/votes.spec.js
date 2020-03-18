@@ -3,13 +3,12 @@ import request from "../../helpers/request";
 
 const newVote = {
   candidate: 1,
-  office: 1,
-  voter: 1
+  office: 1
 };
 let token;
 
 describe("Votes Controllers", () => {
-  beforeAll(() => {
+  beforeAll(done => {
     return request
       .post("/api/v1/auth")
       .send({
@@ -18,6 +17,7 @@ describe("Votes Controllers", () => {
       })
       .then(res => {
         token = res.body.data.token;
+        done();
       });
   });
   describe("Cast a vote", () => {
@@ -48,11 +48,8 @@ describe("Votes Controllers", () => {
           expect(Object.keys(err.body)).toEqual(
             expect.arrayContaining(["status", "error"])
           );
-          expect(Object.keys(err.body.error)).toEqual(
-            expect.arrayContaining(["office, voter"])
-          );
-          expect(err.body.error["office, voter"]).toEqual(
-            "office, voter is already taken"
+          expect(err.body.message).toEqual(
+            "Vote can not be casted to the same office twice"
           );
           done();
         });
@@ -68,44 +65,15 @@ describe("Votes Controllers", () => {
             expect.arrayContaining(["status", "error", "message"])
           );
           expect(Object.keys(err.body.error)).toEqual(
-            expect.arrayContaining(["candidate", "office", "voter"])
+            expect.arrayContaining(["candidate", "office"])
           );
           expect(err.body.message).toMatch(/Validation error/);
           expect(err.body.error).toEqual(
             expect.objectContaining({
               candidate: "candidate is required",
-              office: "office is required",
-              voter: "voter is required"
+              office: "office is required"
             })
           );
-          done();
-        });
-    });
-    test("should not find office", done => {
-      return request
-        .post(`/api/v1/votes`)
-        .set("Authorization", `Bearer ${token}`)
-        .send({ ...newVote, office: 1234 })
-        .expect(404)
-        .then(err => {
-          expect(Object.keys(err.body)).toEqual(
-            expect.arrayContaining(["status", "error"])
-          );
-          expect(err.body.error.message).toMatch(/Office not found/);
-          done();
-        });
-    });
-    test("should not find voter", done => {
-      return request
-        .post(`/api/v1/votes`)
-        .set("Authorization", `Bearer ${token}`)
-        .send({ ...newVote, voter: 1234 })
-        .expect(404)
-        .then(err => {
-          expect(Object.keys(err.body)).toEqual(
-            expect.arrayContaining(["status", "error"])
-          );
-          expect(err.body.error.message).toMatch(/Voter not found/);
           done();
         });
     });
@@ -139,7 +107,7 @@ describe("Votes Controllers", () => {
         });
     });
   });
-  describe("Get all votes", () => {
+  describe("Get all votes per office", () => {
     test("should return all votes successfully", done => {
       return request
         .get(`/api/v1/votes/1`)
@@ -191,12 +159,14 @@ describe("Votes Controllers", () => {
       await request
         .post("/api/v1/auth")
         .send({ email: "admin@example.com", password: "password" })
+        .expect(200)
         .then(res => {
           adminToken = res.body.data.token;
         });
       await request
         .post("/api/v1/offices")
         .set("Authorization", `Bearer ${adminToken}`)
+        .expect(201)
         .send({
           name: "Test Office",
           type: "Legislative"
@@ -215,6 +185,24 @@ describe("Votes Controllers", () => {
           expect(err.body.error.message).toMatch(
             /Unfortunately, no results are available at the moment/
           );
+          done();
+        });
+    });
+  });
+  describe("Get all votes", () => {
+    test("should return all votes successfully", done => {
+      return request
+        .get(`/api/v1/votes`)
+        .set("Authorization", `Bearer ${token}`)
+        .expect(200)
+        .then(res => {
+          expect(Object.keys(res.body)).toEqual(
+            expect.arrayContaining(["status", "data"])
+          );
+          expect(Object.keys(res.body.data.results[0])).toEqual(
+            expect.arrayContaining(["result", "candidate", "office"])
+          );
+          expect(res.body.message).toMatch(/Success/);
           done();
         });
     });

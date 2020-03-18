@@ -21,7 +21,7 @@ describe("Candidate controllers", () => {
   });
   test("should be created successfully", done => {
     return request
-      .post("/api/v1/offices/candidates")
+      .post("/api/v1/candidates")
       .set("Authorization", `Bearer ${token}`)
       .send(newCandidate)
       .expect(201)
@@ -38,7 +38,7 @@ describe("Candidate controllers", () => {
   });
   test("should not be created twice", done => {
     return request
-      .post("/api/v1/offices/candidates")
+      .post("/api/v1/candidates")
       .set("Authorization", `Bearer ${token}`)
       .send(newCandidate)
       .expect(400)
@@ -46,18 +46,13 @@ describe("Candidate controllers", () => {
         expect(Object.keys(err.body)).toEqual(
           expect.arrayContaining(["status", "error"])
         );
-        expect(Object.keys(err.body.error)).toEqual(
-          expect.arrayContaining(["candidate, office"])
-        );
-        expect(err.body.error["candidate, office"]).toEqual(
-          "candidate, office is already taken"
-        );
+        expect(err.body.message).toEqual("Candidate already exists");
         done();
       });
   });
   test("should be validated", done => {
     return request
-      .post("/api/v1/offices/candidates")
+      .post("/api/v1/candidates")
       .set("Authorization", `Bearer ${token}`)
       .send({})
       .expect(400)
@@ -81,7 +76,7 @@ describe("Candidate controllers", () => {
   });
   test("should not find office", done => {
     return request
-      .post(`/api/v1/offices/candidates`)
+      .post(`/api/v1/candidates`)
       .set("Authorization", `Bearer ${token}`)
       .send({ ...newCandidate, office: 1234 })
       .expect(404)
@@ -95,7 +90,7 @@ describe("Candidate controllers", () => {
   });
   test("should not find party", done => {
     return request
-      .post(`/api/v1/offices/candidates`)
+      .post(`/api/v1/candidates`)
       .set("Authorization", `Bearer ${token}`)
       .send({ ...newCandidate, party: 1234 })
       .expect(404)
@@ -109,7 +104,7 @@ describe("Candidate controllers", () => {
   });
   test("should not find user", done => {
     return request
-      .post(`/api/v1/offices/candidates`)
+      .post(`/api/v1/candidates`)
       .set("Authorization", `Bearer ${token}`)
       .send({ ...newCandidate, candidate: 1234 })
       .expect(404)
@@ -124,7 +119,7 @@ describe("Candidate controllers", () => {
 
   test("should return unauthorized", done => {
     return request
-      .post(`/api/v1/offices/candidates`)
+      .post(`/api/v1/candidates`)
       .expect(401)
       .then(err => {
         expect(Object.keys(err.body)).toEqual(
@@ -135,5 +130,24 @@ describe("Candidate controllers", () => {
         );
         done();
       });
+  });
+
+  describe("Get all candidates", () => {
+    test("should return all candidates successfully", done => {
+      return request
+        .get(`/api/v1/candidates`)
+        .set("Authorization", `Bearer ${token}`)
+        .expect(200)
+        .then(res => {
+          expect(Object.keys(res.body)).toEqual(
+            expect.arrayContaining(["status", "data"])
+          );
+          expect(Object.keys(res.body.data.candidates[0])).toEqual(
+            expect.arrayContaining(["id", "candidate", "office", "party"])
+          );
+          expect(res.body.message).toMatch(/Success/);
+          done();
+        });
+    });
   });
 });

@@ -12,11 +12,6 @@ const allSchemas = {
       .integer()
       .positive()
       .min(1)
-      .required(),
-    voter: Joi.number()
-      .integer()
-      .positive()
-      .min(1)
       .required()
   })
 };

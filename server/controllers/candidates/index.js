@@ -1,5 +1,5 @@
 import db from "../../database";
-import { Parties, Offices, Users } from "../../database/models";
+import { Parties, Offices, Users, Candidates } from "../../database/models";
 import { badRequest, okResponse, notFound } from "../../helpers/response";
 import insertQuery from "../../database/helpers/insertQuery";
 import setParams from "../../database/helpers/setParams";
@@ -20,6 +20,19 @@ export default class CandidatesControllers {
         setParams(req.body)
       );
       return okResponse(res, rows[0], 201, "Candidate created successfully");
+    } catch (error) {
+      let message;
+      if (error.code === "23505") message = "Candidate already exists";
+      return badRequest(res, error, message);
+    }
+  }
+
+  static async getAll(_req, res) {
+    try {
+      const { rows: candidates, rowCount: totalCandidates } = await db.query(
+        Candidates.findAll
+      );
+      return okResponse(res, { candidates, totalCandidates });
     } catch (error) {
       return badRequest(res, error);
     }
