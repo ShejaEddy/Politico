@@ -54,7 +54,7 @@ describe("Petition Controllers", () => {
         .post("/api/v1/petitions")
         .set("Authorization", `Bearer ${userToken}`)
         .send({ ...newpetition, evidence: "badRequest"})
-        .expect(201)
+        .expect(400)
         .then(res => {
           expect(Object.keys(res.body)).toEqual(
             expect.arrayContaining(["status", "error"])
