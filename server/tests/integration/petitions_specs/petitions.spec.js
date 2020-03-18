@@ -49,6 +49,21 @@ describe("Petition Controllers", () => {
         });
     });
 
+    test("should not be created and throw baqRequest", done => {
+      return request
+        .post("/api/v1/petitions")
+        .set("Authorization", `Bearer ${userToken}`)
+        .send({ ...newpetition, evidence: "badRequest"})
+        .expect(201)
+        .then(res => {
+          expect(Object.keys(res.body)).toEqual(
+            expect.arrayContaining(["status", "error"])
+          );
+          expect(res.body.error.evidence).toMatch(/evidence must be an array/);
+          done();
+        });
+    });
+
     test("should be validated", done => {
       return request
         .post("/api/v1/petitions")
