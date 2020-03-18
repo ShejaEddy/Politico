@@ -1,7 +1,7 @@
 # Politico
 
 [![Coverage Status](https://coveralls.io/repos/github/ShejaEddy/Politico/badge.svg?branch=develop)](https://coveralls.io/github/ShejaEddy/Politico?branch=develop)
-[![Build Status](https://travis-ci.com/ShejaEddy/Politico.svg?branch=ch-object-to-classes-171817229)](https://travis-ci.com/ShejaEddy/Politico)
+[![Build Status](https://travis-ci.com/ShejaEddy/Politico.svg?branch=fix-petitions-171854092)](https://travis-ci.com/ShejaEddy/Politico)
 
 ## Description
 
