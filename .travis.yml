@@ -21,10 +21,3 @@ script:
   - npm test
   - npm run coveralls
 
-deploy:
-  provider: heroku
-  api_key:
-    secure: "658570a3-7fe9-497a-a002-849cb3a48069"
-  on: develop
-  run:
-    - "npm db:prod:reset"
