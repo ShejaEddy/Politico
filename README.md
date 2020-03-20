@@ -91,6 +91,10 @@ Here are the basic database functionalities to run:
 
 You can test the above API using this Heroku URL `https://politicoserver.herokuapp.com/` with the above mentioned end points.
 
+### Api Documentation
+
+You can find my API documentation at this [Link](https://documenter.getpostman.com/view/7168800/SzS5w7dh?version=latest) or download my Politico_API_Documentation JSON file in my repository
+
 ### Github-page
 
 GitHub page (gh-page) of this project accessed using this link [Politico](https://shejaeddy.github.io/Politico/UI/)
