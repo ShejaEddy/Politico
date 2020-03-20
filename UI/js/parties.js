@@ -95,7 +95,7 @@ const el = query => document.querySelector(query);
     el(".create").disabled = true;
     const taoster = el("#toaster");
     toaster.className = "show";
-    toaster.innerText = "Politician updated successfully";
+    toaster.innerText = "Party updated successfully";
     toaster.style.backgroundColor = "#10a567";
     setTimeout(function() {
       taoster.className = taoster.className.replace("show", "");
