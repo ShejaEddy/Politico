@@ -43,8 +43,28 @@ export default (req, res, next) => {
 export const validateLogin = (req, res, next) => {
   const { email, password } = req.body;
   const schema = Joi.object().keys({
-    email: Joi.string().required(),
+    email: Joi.string()
+      .email()
+      .required(),
     password: Joi.string().required()
   });
   return joiError({ email, password }, schema, next, res);
+};
+
+export const validatePassword = (req, res, next) => {
+  const { password } = req.body;
+  const schema = Joi.object().keys({
+    password: Joi.string().required()
+  });
+  return joiError({ password }, schema, next, res);
+};
+
+export const validateEmail = (req, res, next) => {
+  const { email } = req.body;
+  const schema = Joi.object().keys({
+    email: Joi.string()
+      .email()
+      .required()
+  });
+  return joiError({ email }, schema, next, res);
 };

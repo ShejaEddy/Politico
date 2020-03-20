@@ -3,9 +3,11 @@ import db from "../../database";
 import { badRequest, okResponse, notFound } from "../../helpers/response";
 import { Admin, User } from "../../helpers/roles";
 import bcrypt from "../../helpers/bcrypt";
-import { createToken } from "../../helpers/jwt";
+import { createToken, verifyToken } from "../../helpers/jwt";
 import insertQuery from "../../database/helpers/insertQuery";
+import updateQuery from "../../database/helpers/updateQuery";
 import setParams from "../../database/helpers/setParams";
+import sendEmail from "../../helpers/verificationHelpers";
 
 export default class UserControllers {
   static async auth(req, res) {
@@ -46,7 +48,7 @@ export default class UserControllers {
       return badRequest(res, error);
     }
   }
-  
+
   static async getOne(req, res) {
     try {
       const { id } = req.params;
@@ -59,4 +61,34 @@ export default class UserControllers {
       return badRequest(res, error);
     }
   }
-};
+
+  static async forgotPassword(req, res) {
+    try {
+      const { email } = req.body;
+      const { rows, rowCount } = await db.query(Users.findByEmail, [email]);
+      if (!rowCount) return notFound(res, `User doesn't exist`);
+      const payload = { id: rows[0].id, email };
+      const token = await createToken(payload, "1d");
+      return await sendEmail(res, email, { name: rows[0].firstname, token });
+    } catch (error) {
+      return badRequest(res, error);
+    }
+  }
+
+  static async resetPassword(req, res) {
+    try {
+      const {
+        query: { token }
+      } = req.query;
+      const payload = await verifyToken(token);
+      const { rowCount } = await db.query(updateQuery("user_info", req.body), [
+        payload.id,
+        ...setParams(req.body)
+      ]);
+      if (!rowCount) return notFound(res, "User not found");
+      return okResponse(res, undefined, 201, "Password reset successfully");
+    } catch (error) {
+      return badRequest(res, error);
+    }
+  }
+}

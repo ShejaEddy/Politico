@@ -23,3 +23,11 @@ export const createToken = (payload, expiryTime = "7d") => {
     );
   });
 };
+export const verifyToken = token => {
+  return new Promise((resolve, reject) => {
+    jwt.verify(token, JWT_SECRET_KEY, async (err, payload) => {
+      if (err) reject(err);
+      resolve(payload);
+    });
+  });
+};
